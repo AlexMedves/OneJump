@@ -5,14 +5,19 @@ using UnityEngine;
 public class Mercury : Planet
 {
     Rigidbody mercury_Rb;
+    private float timer = 0;
+    private readonly float timerDelay = 1;
 
 
     private void Awake()
     {
         mercury_Rb = GetComponent<Rigidbody>();
 
-        RealPlanetSpeed = 0.018f;
-        PlanetSpeed = 25f;
+        RealPlanetSpeed = 0.00183f;
+        PlanetSpeed = 13f;
+        PlanetValue = 0;
+        MoneyMadePerSecond = 10;
+
 
 
         SetPlanetUpgradeValue(0, 250);
@@ -25,21 +30,13 @@ public class Mercury : Planet
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.V) && RealRotationStatus == false)
+        SpinThePlanet(mercury_Rb);
+
+        timer += Time.deltaTime;
+        if(timer > timerDelay)
         {
-            RealRotationStatus = true;
-        }
-        else if(Input.GetKeyDown(KeyCode.V) && RealRotationStatus == true)
-        {
-            RealRotationStatus = false;
-        }
-        if(RealRotationStatus)
-        {
-            mercury_Rb.transform.Rotate(0, RealPlanetSpeed * Time.deltaTime, 0);
-        }
-        else
-        {
-            mercury_Rb.transform.Rotate(0, PlanetSpeed * Time.deltaTime, 0);
+            timer = 0;
+            GameManager.AddMoneyPerSecond(MoneyMadePerSecond);
         }
     }
 }

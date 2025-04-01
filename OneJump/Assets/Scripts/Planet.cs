@@ -7,18 +7,19 @@ using UnityEngine;
 public class Planet : MonoBehaviour
 {
     [Header("Game Manager Things")]
-    [SerializeField] private GameObject gameManager;
+    [SerializeField] static protected GameObject gameManager;
 
     [Header("Planet Features")]
     [SerializeField] private float realPlanetSpinSpeed = 0f;
     [SerializeField] private float planetSpinSpeed = 0f;
-    [SerializeField] private float planetResearchValue = 0f;
+    [SerializeField] private int planetResearchValue = 0;
+    private int moneyMadePerSecond = 0;
 
     [SerializeField] private bool isRealRotationActive = false;
 
     [Header("Planet Upgrades Values")]
     [SerializeField] float[] planetUpgrades = new float[4];
-    
+
 
 
     #region Planet Basic Values
@@ -38,10 +39,16 @@ public class Planet : MonoBehaviour
         get { return isRealRotationActive; }
         set { isRealRotationActive = value; }
     }
-    protected float PlanetValue
+    protected int PlanetValue
     {
         get { return planetResearchValue; }
         set { planetResearchValue = value; }
+    }
+
+    protected int MoneyMadePerSecond
+    {
+        get { return moneyMadePerSecond; }
+        set { moneyMadePerSecond = value; }
     }
     #endregion
 
@@ -57,5 +64,25 @@ public class Planet : MonoBehaviour
         return planetUpgrades[planetUpgradeIndex];
     }
 
-    
+    protected void SpinThePlanet(Rigidbody planetRb)
+    {
+        if (Input.GetKeyDown(KeyCode.V) && RealRotationStatus == false)
+        {
+            RealRotationStatus = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.V) && RealRotationStatus == true)
+        {
+            RealRotationStatus = false;
+        }
+        if (RealRotationStatus)
+        {
+            planetRb.transform.Rotate(0, RealPlanetSpeed * Time.deltaTime, 0);
+        }
+        else
+        {
+            planetRb.transform.Rotate(0, PlanetSpeed * Time.deltaTime, 0);
+        }
+    }
+
+
 }

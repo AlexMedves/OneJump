@@ -12,6 +12,7 @@ That list will therefore reside here:
 <H4>
 [=======Music List=======]</br>
 !~Version 0.00: https://www.youtube.com/watch?v=p1dsrd9bJ2c
+!~Version 0.01: https://www.youtube.com/watch?v=GU8htjxY6ro
   
 [ |===================| ]
 </H4>
@@ -32,3 +33,16 @@ That list will therefore reside here:
 Overall, I didn't have too much trouble implementing everything so far, fingers crossed it stays that way. The values mentioned above are always subject to change, but I won't bore you with the exact values I use.
 If you really want to see the values, you can simply access them within my scripts and/or download the project to see editor specific set values.
 That's all really. Thank you for checking out my repo, I appreciate it.
+
+<H2>Version 0.01</H2>
+<H3>New Features: </H3>
++ All of the planets now have their own representative color.(Still have to texture them)</br>
++ I changed the game manager script so it doesn't handle the camera as well, giving the actual camera script a purpose. </br>
++ I started working on the timely addition of money.</br>
++ The game now knows what planet you have selected.</br>
++ Started working on Upgrade system scripts.</br>
+
+<H3>Description</H3>
+This is where the problems are now starting to rise, specifically because I do not know which script should handle what.
+I want the game manager script to be able to handle all of the necessary money values, and work in unison with the upgrade script.
+We will see what happens.
