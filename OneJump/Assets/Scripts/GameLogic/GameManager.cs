@@ -8,15 +8,31 @@ public class GameManager : MonoBehaviour
 {
     static protected int moneyValue = 0;
 
+    //static private float gameTimer = 0;
+    //static private float gameTimerDelay = 1f;
+
     [Header("General Object References")]
     [SerializeField] TMP_Text moneyText;
 
     [Header("Planet Logic Stuff")]
     [SerializeField] static public int currentPlanetIndex = 0;
 
+    [SerializeField] private GameObject scanObject;
+    [SerializeField] private GameObject currentSelectedPlanet;
+
+
     private void Update()
     {
         moneyText.SetText("Money value: " + moneyValue);
+        //gameTimer += Time.deltaTime;
+
+        if (Physics.Raycast(scanObject.transform.position, Vector3.forward, out RaycastHit hitPlanet, 50f))
+        {
+            currentSelectedPlanet = hitPlanet.collider.gameObject;
+
+            Debug.Log(currentSelectedPlanet.GetComponent<Planet>().planetUpgrades[0]);
+        }
+
     }
 
     #region Button things here
@@ -39,11 +55,11 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    static public void AddMoneyPerSecond(int howMuchPerSecond)
+    public void AddMoneyPerSecond(int howMuchPerSecond)
     {
+
         moneyValue += howMuchPerSecond;
-        Debug.Log("Added money: " + howMuchPerSecond);
-        //Getting all the planet scripts to call this just makes one planet get the value added, not all of them.
+
     }
 
     private void TellMeWhichPlanet()

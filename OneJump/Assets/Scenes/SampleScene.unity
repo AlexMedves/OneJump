@@ -122,6 +122,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &112108975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 112108976}
+  m_Layer: 0
+  m_Name: ScanObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &112108976
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112108975}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 963194228}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &480976433
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,6 +198,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyText: {fileID: 808385923}
+  scanObject: {fileID: 112108975}
+  currentSelectedPlanet: {fileID: 0}
 --- !u!1 &511318683
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,6 +364,8 @@ RectTransform:
   m_Children:
   - {fileID: 1558172098}
   - {fileID: 808385922}
+  - {fileID: 1339686228}
+  - {fileID: 2041719921}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -656,7 +691,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -7.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 112108976}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &963194229
@@ -947,17 +983,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1339686227}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1663666274}
-  m_Father: {fileID: 1558172098}
+  m_Father: {fileID: 544276789}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 448, y: -2}
+  m_AnchoredPosition: {x: 451, y: 3}
   m_SizeDelta: {x: 160, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1339686229
@@ -1086,8 +1122,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1838439409}
-  - {fileID: 1339686228}
-  - {fileID: 2041719921}
   m_Father: {fileID: 544276789}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1141,7 +1175,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 480976435}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: AddMoney
+        m_MethodName: AddClickMoney
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1483,17 +1517,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2041719920}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1337466148}
-  m_Father: {fileID: 1558172098}
+  m_Father: {fileID: 544276789}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -448, y: -2}
+  m_AnchoredPosition: {x: -445, y: 3}
   m_SizeDelta: {x: 160, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2041719922
@@ -1640,28 +1674,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &542219905582872436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8743011500150535436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97ffc82e2ec686f40b51ece686d0700c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
-  realPlanetSpinSpeed: 0
-  planetSpinSpeed: 0
-  planetResearchValue: 0
-  isRealRotationActive: 0
-  planetUpgrades:
-  - 0
-  - 0
-  - 0
-  - 0
 --- !u!33 &609722025804881865
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1919,28 +1931,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1385810193140964433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2955520792181817030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad014f528c132d498e22e993adc9867, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
-  realPlanetSpinSpeed: 0
-  planetSpinSpeed: 0
-  planetResearchValue: 0
-  isRealRotationActive: 0
-  planetUpgrades:
-  - 0
-  - 0
-  - 0
-  - 0
 --- !u!1 &1447012954283202717
 GameObject:
   m_ObjectHideFlags: 0
@@ -1970,7 +1960,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2847057163447309628}
   - component: {fileID: 2245693079892965325}
-  - component: {fileID: 4220170089942960072}
+  - component: {fileID: 6802863340076957552}
   - component: {fileID: 2721322827894448926}
   - component: {fileID: 2275959650807949318}
   - component: {fileID: 6802863340076957551}
@@ -2335,7 +2325,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2935096593845359776}
   - component: {fileID: 2228867011122408108}
-  - component: {fileID: 1385810193140964433}
+  - component: {fileID: 7556220920402732416}
   - component: {fileID: 2085748490687579342}
   - component: {fileID: 7556220920402732415}
   - component: {fileID: 5081996530167613188}
@@ -2481,28 +2471,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &3482386241594764260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5993651945241934588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99d94b7bad06a2544a7c809d7c34e990, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
-  realPlanetSpinSpeed: 0
-  planetSpinSpeed: 0
-  planetResearchValue: 0
-  isRealRotationActive: 0
-  planetUpgrades:
-  - 0
-  - 0
-  - 0
-  - 0
 --- !u!4 &3580583248799142543
 Transform:
   m_ObjectHideFlags: 0
@@ -2574,7 +2542,7 @@ GameObject:
   m_Component:
   - component: {fileID: 972459857536178498}
   - component: {fileID: 2753494766294072366}
-  - component: {fileID: 8515456548808958550}
+  - component: {fileID: 7433107416436148372}
   - component: {fileID: 7433107416436148371}
   - component: {fileID: 4187671531810035344}
   - component: {fileID: 5036680192919130825}
@@ -2645,28 +2613,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4220170089942960072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1606576137416374834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac7a21fc70e9f754684414557043ac48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
-  realPlanetSpinSpeed: 0
-  planetSpinSpeed: 0
-  planetResearchValue: 0
-  isRealRotationActive: 0
-  planetUpgrades:
-  - 0
-  - 0
-  - 0
-  - 0
 --- !u!4 &4342474454525265635
 Transform:
   m_ObjectHideFlags: 0
@@ -2846,28 +2792,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2847057163447309628}
   m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
---- !u!114 &4977957465268346267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8945494624553273143}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bdcaba0502c32d48bd6d4a3cf844f7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
-  realPlanetSpinSpeed: 0
-  planetSpinSpeed: 0
-  planetResearchValue: 0
-  isRealRotationActive: 0
-  planetUpgrades:
-  - 0
-  - 0
-  - 0
-  - 0
 --- !u!65 &4979287305740349987
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2964,28 +2888,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 14
   m_CollisionDetection: 0
---- !u!114 &5613995799228974390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7586038319960467257}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a92f7ffadbfbb7047936a4a467e4086c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
-  realPlanetSpinSpeed: 0
-  planetSpinSpeed: 0
-  planetResearchValue: 0
-  isRealRotationActive: 0
-  planetUpgrades:
-  - 250
-  - 250
-  - 500
-  - 750
 --- !u!1 &5830569592459784668
 GameObject:
   m_ObjectHideFlags: 0
@@ -2996,7 +2898,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6679554590738074545}
   - component: {fileID: 1902609897449796507}
-  - component: {fileID: 8470918262456711681}
+  - component: {fileID: 8794120304175131568}
   - component: {fileID: 8410631569824995899}
   - component: {fileID: 5072688469832068211}
   - component: {fileID: 8794120304175131567}
@@ -3055,7 +2957,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4342474454525265635}
   - component: {fileID: 4927770722727057842}
-  - component: {fileID: 3482386241594764260}
+  - component: {fileID: 8171364310657776090}
   - component: {fileID: 8171364310657776089}
   - component: {fileID: 7072349629297309354}
   - component: {fileID: 2751095707001028240}
@@ -3270,6 +3172,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 14
   m_CollisionDetection: 0
+--- !u!114 &6802863340076957552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606576137416374834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b70409d8afd79fc42898f1feadd18fe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planetName: Jaleb
+  isPlanetUnlocked: 1
+  realPlanetSpinSpeed: 0.086
+  planetSpinSpeed: 13
+  planetResearchValue: 0
+  moneyMadePerSecond: 0
+  planetUpgrades:
+  - 2000
+  - 2000
+  - 5200
+  - 8000
 --- !u!54 &6952599536816770743
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3427,6 +3352,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7433107416436148372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3825084937152702715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b70409d8afd79fc42898f1feadd18fe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planetName: Tralbar
+  isPlanetUnlocked: 1
+  realPlanetSpinSpeed: 0.00652
+  planetSpinSpeed: 9
+  planetResearchValue: 0
+  moneyMadePerSecond: 0
+  planetUpgrades:
+  - 500
+  - 500
+  - 1300
+  - 2000
 --- !u!135 &7556220920402732415
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3448,6 +3396,29 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7556220920402732416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2955520792181817030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b70409d8afd79fc42898f1feadd18fe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planetName: 
+  isPlanetUnlocked: 0
+  realPlanetSpinSpeed: 9.7
+  planetSpinSpeed: 15
+  planetResearchValue: 0
+  moneyMadePerSecond: 0
+  planetUpgrades:
+  - 32000
+  - 32000
+  - 83200
+  - 0
 --- !u!1 &7586038319960467257
 GameObject:
   m_ObjectHideFlags: 0
@@ -3460,7 +3431,6 @@ GameObject:
   - component: {fileID: 3782246798380319664}
   - component: {fileID: 8066606275931005002}
   - component: {fileID: 924427889768342696}
-  - component: {fileID: 5613995799228974390}
   - component: {fileID: 3038221274839802853}
   - component: {fileID: 6952599536816770743}
   m_Layer: 0
@@ -3586,16 +3556,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7586038319960467257}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b70409d8afd79fc42898f1feadd18fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 480976433}
-  realPlanetSpinSpeed: 0.008
-  planetSpinSpeed: 2.44
+  planetName: Mercury
+  isPlanetUnlocked: 1
+  realPlanetSpinSpeed: 0.00183
+  planetSpinSpeed: 13
   planetResearchValue: 0
-  isRealRotationActive: 0
+  moneyMadePerSecond: 10
   planetUpgrades:
   - 250
   - 250
@@ -3643,6 +3614,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8171364310657776090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5993651945241934588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b70409d8afd79fc42898f1feadd18fe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planetName: 
+  isPlanetUnlocked: 0
+  realPlanetSpinSpeed: 36.84
+  planetSpinSpeed: 22
+  planetResearchValue: 0
+  moneyMadePerSecond: 0
+  planetUpgrades:
+  - 8000
+  - 8000
+  - 20800
+  - 42000
 --- !u!4 &8289082520730413732
 Transform:
   m_ObjectHideFlags: 0
@@ -3743,28 +3737,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8470918262456711681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5830569592459784668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 697e5957809e2b14982ce1e35fe77257, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
-  realPlanetSpinSpeed: 0
-  planetSpinSpeed: 0
-  planetResearchValue: 0
-  isRealRotationActive: 0
-  planetUpgrades:
-  - 0
-  - 0
-  - 0
-  - 0
 --- !u!23 &8474753757331553844
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3807,28 +3779,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8515456548808958550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3825084937152702715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f18822aa9b0afe43beb1113153be74e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 480976433}
-  realPlanetSpinSpeed: 0.006
-  planetSpinSpeed: 13
-  planetResearchValue: 10000
-  isRealRotationActive: 0
-  planetUpgrades:
-  - 0
-  - 0
-  - 0
-  - 0
 --- !u!1 &8743011500150535436
 GameObject:
   m_ObjectHideFlags: 0
@@ -3839,7 +3789,7 @@ GameObject:
   m_Component:
   - component: {fileID: 893839518786818594}
   - component: {fileID: 2280817220494317829}
-  - component: {fileID: 542219905582872436}
+  - component: {fileID: 9006128936165935595}
   - component: {fileID: 1106545591732092352}
   - component: {fileID: 6421793715153573145}
   - component: {fileID: 9006128936165935594}
@@ -3877,6 +3827,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 14
   m_CollisionDetection: 0
+--- !u!114 &8794120304175131568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5830569592459784668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b70409d8afd79fc42898f1feadd18fe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planetName: 
+  isPlanetUnlocked: 0
+  realPlanetSpinSpeed: 14.79
+  planetSpinSpeed: 18
+  planetResearchValue: 0
+  moneyMadePerSecond: 0
+  planetUpgrades:
+  - 16000
+  - 16000
+  - 41600
+  - 168000
 --- !u!33 &8900363741106887606
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3937,7 +3910,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2557280439246585707}
   - component: {fileID: 4652912040395067974}
-  - component: {fileID: 4977957465268346267}
+  - component: {fileID: 8945494624553273144}
   - component: {fileID: 6714489121244291395}
   - component: {fileID: 4468589235919430247}
   - component: {fileID: 1752928032200420151}
@@ -3948,6 +3921,29 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8945494624553273144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8945494624553273143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b70409d8afd79fc42898f1feadd18fe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planetName: Gortun
+  isPlanetUnlocked: 1
+  realPlanetSpinSpeed: 0.157
+  planetSpinSpeed: 18
+  planetResearchValue: 0
+  moneyMadePerSecond: 0
+  planetUpgrades:
+  - 1000
+  - 1000
+  - 2600
+  - 4000
 --- !u!54 &9006128936165935594
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3975,6 +3971,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 14
   m_CollisionDetection: 0
+--- !u!114 &9006128936165935595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8743011500150535436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b70409d8afd79fc42898f1feadd18fe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planetName: 
+  isPlanetUnlocked: 0
+  realPlanetSpinSpeed: 45.6
+  planetSpinSpeed: 28
+  planetResearchValue: 0
+  moneyMadePerSecond: 0
+  planetUpgrades:
+  - 4000
+  - 4000
+  - 10400
+  - 16000
 --- !u!33 &9065871723486729782
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -7,18 +7,57 @@ using UnityEngine;
 public class Planet : MonoBehaviour
 {
     [Header("Game Manager Things")]
-    [SerializeField] static protected GameObject gameManager;
+    protected GameManager gameManagerScript;
 
     [Header("Planet Features")]
+    [SerializeField] protected string planetName;
+    [SerializeField] private bool isPlanetUnlocked = false;
     [SerializeField] private float realPlanetSpinSpeed = 0f;
     [SerializeField] private float planetSpinSpeed = 0f;
     [SerializeField] private int planetResearchValue = 0;
-    private int moneyMadePerSecond = 0;
+    [SerializeField] private int moneyMadePerSecond = 0;
 
-    [SerializeField] private bool isRealRotationActive = false;
+
+    private float gameTimer = 0f;
+    private readonly float gameTimerDelay = 1f;
+
+
+    private Rigidbody planetRigidBody;
+
+    [SerializeField] static private bool isRealRotationActive = false;
 
     [Header("Planet Upgrades Values")]
-    [SerializeField] float[] planetUpgrades = new float[4];
+    [SerializeField] public float[] planetUpgrades = new float[4];
+
+
+    private void Awake()
+    {
+        planetRigidBody = this.GetComponent<Rigidbody>();
+        gameManagerScript = FindObjectOfType<GameManager>(true);
+    }
+
+    private void Update()
+    {
+        gameTimer += Time.deltaTime;
+
+        if (isPlanetUnlocked) //This might not be needed, as locked planets won't have any value of money to give you anyway.
+        {
+            if (gameTimer > gameTimerDelay)
+            {
+                gameTimer = 0f;
+                gameManagerScript.AddMoneyPerSecond(moneyMadePerSecond);
+
+                if(moneyMadePerSecond !=0)
+                {
+                    Debug.Log($"Money added : {moneyMadePerSecond} from {planetName}");
+                }
+
+            }
+        }
+        SpinThePlanet(planetRigidBody);
+        
+    }
+
 
 
 
@@ -50,19 +89,20 @@ public class Planet : MonoBehaviour
         get { return moneyMadePerSecond; }
         set { moneyMadePerSecond = value; }
     }
-    #endregion
 
-    //Set the upgrade value of that index as the requested value.
-    protected float SetPlanetUpgradeValue( int planetUpgradeIndex, float planetUpgradeValue)
+    protected float SetPlanetUpgradeValue(int planetUpgradeIndex, float planetUpgradeValue)
     {
         planetUpgrades[planetUpgradeIndex] = planetUpgradeValue;
         return planetUpgrades[planetUpgradeIndex];
     }
     //Return what the upgrade value of that index is.
-    protected float GetPlanetUpgradeValue( int planetUpgradeIndex)
+    protected float GetPlanetUpgradeValue(int planetUpgradeIndex)
     {
         return planetUpgrades[planetUpgradeIndex];
     }
+
+
+    #endregion
 
     protected void SpinThePlanet(Rigidbody planetRb)
     {
@@ -74,6 +114,8 @@ public class Planet : MonoBehaviour
         {
             RealRotationStatus = false;
         }
+
+
         if (RealRotationStatus)
         {
             planetRb.transform.Rotate(0, RealPlanetSpeed * Time.deltaTime, 0);
