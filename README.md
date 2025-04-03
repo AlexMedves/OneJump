@@ -12,8 +12,7 @@ That list will therefore reside here:
 <H4>
 [=======Music List=======]</br>
 !~Version 0.00: https://www.youtube.com/watch?v=p1dsrd9bJ2c </br>
-!~Version 0.01: https://www.youtube.com/watch?v=GU8htjxY6ro </br>
-!~Version 0.02: https://www.youtube.com/watch?v=Dvwaq1rwioQ </br>
+!~Version 0.01: https://www.youtube.com/watch?v=GU8htjxY6ro
   
 [ |===================| ]
 </H4>
@@ -47,18 +46,3 @@ That's all really. Thank you for checking out my repo, I appreciate it.
 This is where the problems are now starting to rise, specifically because I do not know which script should handle what.
 I want the game manager script to be able to handle all of the necessary money values, and work in unison with the upgrade script.
 We will see what happens.
-
-
-<H2>Version 0.02</H2>
-<H3>New Features: </H3>
-- I have decided to completely ditch the idea of individual scripts, I don't know why I even thought that would be useful. </br>
-+ New planet selection system. </br>
-+ Added unlocked/locked planets. </br>
-+ Each planet now gives you its set amount of money every second. </br>
-? Planets may or may not be part of our solar system anymore due to realism, switching to alien planets for now (which can have cooler names anyways). </br>
-
-<H3>Description</H3>
-For the next version I should be able to implement some basic upgradability to planets, being able to have upgrades on whichever planet you choose to upgrade and for what resource.
-I did finally have my first proper issue, I was trying to figure out the best way of **Genuinely** knowing what planet is selected, and I ended up resorting to a raycast method,
-I am simply shooting a timely raycast from the camera position (I say timely, currently the raycast is hit every update, but I will maybe put it down as a coroutine or something so that it has a delay),
- facing forward and getting the game object that is currently hit, and storing it as a value.
