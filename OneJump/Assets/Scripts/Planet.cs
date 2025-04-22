@@ -11,7 +11,7 @@ public class Planet : MonoBehaviour
 
     [Header("Planet Features")]
     public string planetName;
-    [SerializeField] private bool isPlanetUnlocked = false;
+    [SerializeField] public bool isPlanetUnlocked = false;
     [SerializeField] private float realPlanetSpinSpeed = 0f;
     [SerializeField] private float planetSpinSpeed = 0f;
     [SerializeField] private int planetResearchValue = 0;
@@ -27,10 +27,10 @@ public class Planet : MonoBehaviour
 
     private Rigidbody planetRigidBody;
 
-    [SerializeField] static private bool isRealRotationActive = false;
+    static public bool isRealRotationActive = false;
 
     [Header("Planet Upgrades Values")]
-    public int[] planetUpgradePrice = new int[4];
+    public int[] planetUpgradePrice = new int[3];
     public int mineral1UpgradeLvl = 1;
     public int mineral2UpgradeLvl = 1;
     public int mineral3UpgradeLvl = 1;
@@ -52,14 +52,11 @@ public class Planet : MonoBehaviour
             {
                 gameTimer = 0f;
                 gameManagerScript.AddMoneyPerSecond(mineral1MadePerSecond, mineral2MadePerSecond, mineral3MadePerSecond);
-
             }
         }
         SpinThePlanet(planetRigidBody);
         
     }
-
-
 
     #region Planet Basic Values
     //I don't know if this section is even worth existing yet, but we figure it out.
@@ -115,7 +112,6 @@ public class Planet : MonoBehaviour
             RealRotationStatus = false;
         }
 
-
         if (RealRotationStatus)
         {
             planetRb.transform.Rotate(0, RealPlanetSpeed * Time.deltaTime, 0);
@@ -125,6 +121,4 @@ public class Planet : MonoBehaviour
             planetRb.transform.Rotate(0, PlanetSpeed * Time.deltaTime, 0);
         }
     }
-
-
 }
