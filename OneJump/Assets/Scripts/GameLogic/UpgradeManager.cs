@@ -13,10 +13,9 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] TMP_Text upgrade2Level;
     [SerializeField] TMP_Text upgrade3Level;
 
+    //Increment values for the upgrades. After purchasing said upgrade, value goes up.
     private int upgr1Incr = 50;
-
-    private int upgr2Incr = 50;
-
+    private int upgr2Incr = 50; //These might need to be changed.
     private int upgr3Incr = 50;
     private int upgr3Incr2 = 50;
 
@@ -37,9 +36,9 @@ public class UpgradeManager : MonoBehaviour
 
         if(planetComponent != null)
         {
-            upgrade1.SetText($"Price : {planetComponent.planetUpgrades[0]} iron, {upgr1Incr} copper.");
-            upgrade2.SetText($"Price : {planetComponent.planetUpgrades[1]} copper, {upgr2Incr} iron.");
-            upgrade3.SetText($"Price : {planetComponent.planetUpgrades[2]} teralium, {upgr3Incr} iron, {upgr3Incr2} copper");
+            upgrade1.SetText($"Price : {planetComponent.planetUpgradePrice[0]} iron, {upgr1Incr} copper."); //Needs this much x material, this much y material, this much z material.
+            upgrade2.SetText($"Price : {planetComponent.planetUpgradePrice[1]} copper, {upgr2Incr} iron.");
+            upgrade3.SetText($"Price : {planetComponent.planetUpgradePrice[2]} teralium, {upgr3Incr} iron, {upgr3Incr2} copper");
 
             upgrade1Level.SetText($"Level : {planetComponent.mineral1UpgradeLvl}");
             upgrade2Level.SetText($"Level : {planetComponent.mineral2UpgradeLvl}");
@@ -50,49 +49,49 @@ public class UpgradeManager : MonoBehaviour
 
     public void PressUpgrade1()
     {
-        if(GameManager.mineral1Value >= planetComponent.planetUpgrades[0] && GameManager.mineral2Value >= upgr1Incr) //Second value has to increment as well.
+        if (GameManager.mineral1Amount >= planetComponent.planetUpgradePrice[0] && GameManager.mineral2Amount >= upgr1Incr)
         {
-            planetComponent.mineral1MadePerSecond += 2 + planetComponent.mineral1UpgradeLvl; //This needs to be an incremental value
-            GameManager.mineral1Value -= planetComponent.planetUpgrades[0];
+            planetComponent.mineral1MadePerSecond += 2 + planetComponent.mineral1UpgradeLvl; // make this much more per second.
+            GameManager.mineral1Amount -= planetComponent.planetUpgradePrice[0];
 
-            GameManager.mineral2Value -= upgr1Incr;
+            GameManager.mineral2Amount -= upgr1Incr;
 
             upgr1Incr += 20;
 
-            planetComponent.planetUpgrades[0] = planetComponent.planetUpgrades[0] + (int)Mathf.Ceil(planetComponent.mineral1UpgradeLvl / 2);
+            planetComponent.planetUpgradePrice[0] = planetComponent.planetUpgradePrice[0] + (int)Mathf.Ceil(planetComponent.mineral1UpgradeLvl / 2);
             planetComponent.mineral1UpgradeLvl++;
-        } 
+        }
     }
 
     public void PressUpgrade2()
     {
-        if (GameManager.mineral2Value >= planetComponent.planetUpgrades[1] && GameManager.mineral1Value >= upgr2Incr)
+        if (GameManager.mineral2Amount >= planetComponent.planetUpgradePrice[1] && GameManager.mineral1Amount >= upgr2Incr)
         {
             planetComponent.mineral2MadePerSecond += 2 + planetComponent.mineral2UpgradeLvl; //This needs to be an incremental value
-            GameManager.mineral2Value -= planetComponent.planetUpgrades[1];
 
-            GameManager.mineral1Value -= upgr2Incr;
+            GameManager.mineral2Amount -= planetComponent.planetUpgradePrice[1];
+            GameManager.mineral1Amount -= upgr2Incr;
             upgr2Incr += 20;
 
-            planetComponent.planetUpgrades[1] = planetComponent.planetUpgrades[1] + (int)Mathf.Ceil(planetComponent.mineral2UpgradeLvl / 2);
+            planetComponent.planetUpgradePrice[1] = planetComponent.planetUpgradePrice[1] + (int)Mathf.Ceil(planetComponent.mineral2UpgradeLvl / 2);
             planetComponent.mineral2UpgradeLvl++;
         }
     }
 
     public void PressUpgrade3()
     {
-        if (GameManager.mineral3Value >= planetComponent.planetUpgrades[2] && GameManager.mineral1Value >= upgr3Incr && GameManager.mineral2Value >= upgr3Incr2)
+        if (GameManager.mineral3Amount >= planetComponent.planetUpgradePrice[2] && GameManager.mineral1Amount >= upgr3Incr && GameManager.mineral2Amount >= upgr3Incr2)
         {
-            planetComponent.mineral3MadePerSecond += 2 + planetComponent.mineral2UpgradeLvl; //This needs to be an incremental value
-            GameManager.mineral3Value -= planetComponent.planetUpgrades[2];
+            planetComponent.mineral3MadePerSecond += 2 + planetComponent.mineral3UpgradeLvl; //This needs to be an incremental value
 
-            GameManager.mineral1Value -= upgr3Incr;
-            GameManager.mineral2Value -= upgr3Incr2;
+            GameManager.mineral3Amount -= planetComponent.planetUpgradePrice[2];
+            GameManager.mineral1Amount -= upgr3Incr;
+            GameManager.mineral2Amount -= upgr3Incr2;
 
             upgr3Incr += 20;
             upgr3Incr2 += 20;
 
-            planetComponent.planetUpgrades[2] = planetComponent.planetUpgrades[2] + (int)Mathf.Ceil(planetComponent.mineral2UpgradeLvl / 2);
+            planetComponent.planetUpgradePrice[2] = planetComponent.planetUpgradePrice[2] + (int)Mathf.Ceil(planetComponent.mineral2UpgradeLvl / 2);
             planetComponent.mineral3UpgradeLvl++;
         }
     }

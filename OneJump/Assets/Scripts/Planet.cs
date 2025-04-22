@@ -30,7 +30,7 @@ public class Planet : MonoBehaviour
     [SerializeField] static private bool isRealRotationActive = false;
 
     [Header("Planet Upgrades Values")]
-    public int[] planetUpgrades = new int[4];
+    public int[] planetUpgradePrice = new int[4];
     public int mineral1UpgradeLvl = 1;
     public int mineral2UpgradeLvl = 1;
     public int mineral3UpgradeLvl = 1;
@@ -52,12 +52,6 @@ public class Planet : MonoBehaviour
             {
                 gameTimer = 0f;
                 gameManagerScript.AddMoneyPerSecond(mineral1MadePerSecond, mineral2MadePerSecond, mineral3MadePerSecond);
-
-                //if(moneyMadePerSecond !=0)
-                //{
-                //    Debug.Log($"Money added : {moneyMadePerSecond} from {planetName}");
-                //}
-                //Comment to change branch
 
             }
         }
@@ -98,13 +92,13 @@ public class Planet : MonoBehaviour
 
     protected float SetPlanetUpgradeValue(int planetUpgradeIndex, int planetUpgradeValue)
     {
-        planetUpgrades[planetUpgradeIndex] = planetUpgradeValue;
-        return planetUpgrades[planetUpgradeIndex];
+        planetUpgradePrice[planetUpgradeIndex] = planetUpgradeValue;
+        return planetUpgradePrice[planetUpgradeIndex];
     }
     //Return what the upgrade value of that index is.
     protected float GetPlanetUpgradeValue(int planetUpgradeIndex)
     {
-        return planetUpgrades[planetUpgradeIndex];
+        return planetUpgradePrice[planetUpgradeIndex];
     }
 
 

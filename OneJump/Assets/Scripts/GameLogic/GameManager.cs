@@ -7,9 +7,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    static public int mineral1Value = 0;
-    static public int mineral2Value = 0;
-    static public int mineral3Value = 0;
+    static public int mineral1Amount = 0;
+    static public int mineral2Amount = 0;
+    static public int mineral3Amount = 0;
 
     //static private int actualMoney = moneyValue;
 
@@ -29,9 +29,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        mineral1Text.SetText("Iron amount: " + mineral1Value);
-        mineral2Text.SetText("Copper amount: " + mineral2Value); //Set the texts value so that they update constantly.
-        mineral3Text.SetText("Teralium amount: " + mineral3Value);
+        mineral1Text.SetText("Iron amount: " + mineral1Amount);
+        mineral2Text.SetText("Copper amount: " + mineral2Amount); //Set the texts value so that they update constantly.
+        mineral3Text.SetText("Teralium amount: " + mineral3Amount);
 
         //gameTimer += Time.deltaTime;
         StartHitScanningForPlanet(); //Can be put down as invokeRepeating if causing issues
@@ -44,14 +44,14 @@ public class GameManager : MonoBehaviour
     {
         switch (selectedMaterial)
         {
-            default: mineral1Value++;
+            default: mineral1Amount++;
                 break;
 
-            case 0: mineral1Value++;
+            case 0: mineral1Amount++;
                 break;
-            case 1: mineral2Value++; 
+            case 1: mineral2Amount++; 
                 break;
-            case 2: mineral3Value++;
+            case 2: mineral3Amount++;
                 break;
         }
     }
@@ -72,9 +72,9 @@ public class GameManager : MonoBehaviour
         //int how much per second, and also take what mineral to add to. Add a switch case that adds to said mineralAmount.
     {
 
-        mineral1Value += plusMineral1;
-        mineral2Value += plusMineral2;
-        mineral3Value += plusMineral3;
+        mineral1Amount += plusMineral1;
+        mineral2Amount += plusMineral2;
+        mineral3Amount += plusMineral3;
 
     }
 
