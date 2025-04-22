@@ -72,3 +72,9 @@ facing forward and getting the game object that is currently hit, and storing it
 + Upgrade levels are now shown on each button. </br>
 + You can switch the resource you want to click for. </br>
 + Each resource can now be added per second. </br>
+
+<H3>Description</H3>
+This time around I didn't add new features per se, however I developed onto existing ones, adding basic functionality as I will be able to polish them at a later date.
+I am unsure of some of the previous code I have written optimization wise that is, but so far it has not caused any issues, I have commented the code so that I can come back
+at a later date if needed.
+
