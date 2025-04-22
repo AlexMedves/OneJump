@@ -14,6 +14,7 @@ That list will therefore reside here:
 !~Version 0.00: https://www.youtube.com/watch?v=p1dsrd9bJ2c </br>
 !~Version 0.01: https://www.youtube.com/watch?v=GU8htjxY6ro </br>
 !~Version 0.02: https://www.youtube.com/watch?v=Dvwaq1rwioQ </br>
+!~Version 0.03: https://www.youtube.com/watch?v=iTC49Hi4hb8 </br>
   
 [ |===================| ]
 </H4>
@@ -61,4 +62,13 @@ We will see what happens.
 For the next version I should be able to implement some basic upgradability to planets, being able to have upgrades on whichever planet you choose to upgrade and for what resource.
 I did finally have my first proper issue, I was trying to figure out the best way of **Genuinely** knowing what planet is selected, and I ended up resorting to a raycast method,
 I am simply shooting a timely raycast from the camera position (I say timely, currently the raycast is hit every update, but I will maybe put it down as a coroutine or something so that it has a delay),
- facing forward and getting the game object that is currently hit, and storing it as a value.
+facing forward and getting the game object that is currently hit, and storing it as a value.
+
+
+<H2>Version 0.03</H2>
+<H3>New Features: </H3>
+- There will now be only three upgrades per planet, with the resource names still to be decided on. </br>
++ Upgrades can now be applied to each resource. </br>
++ Upgrade levels are now shown on each button. </br>
++ You can switch the resource you want to click for. </br>
++ Each resource can now be added per second. </br>

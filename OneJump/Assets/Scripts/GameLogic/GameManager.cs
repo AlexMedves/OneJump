@@ -2,98 +2,108 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    static protected int moneyValue = 0;
+    static public int mineral1Value = 0;
+    static public int mineral2Value = 0;
+    static public int mineral3Value = 0;
 
-    //static private float gameTimer = 0;
-    //static private float gameTimerDelay = 1f;
+    //static private int actualMoney = moneyValue;
+
 
     [Header("General Object References")]
-    [SerializeField] TMP_Text moneyText;
+    [SerializeField] TMP_Text mineral1Text;
+    [SerializeField] TMP_Text mineral2Text;
+    [SerializeField] TMP_Text mineral3Text;
+    private int selectedMaterial = 0;
 
     [Header("Planet Logic Stuff")]
     [SerializeField] static public int currentPlanetIndex = 0;
 
-    [SerializeField] private GameObject scanObject;
-    [SerializeField] private GameObject currentSelectedPlanet;
+     [SerializeField] private GameObject scanObject;
+     static public GameObject currentSelectedPlanet;
 
 
     private void Update()
     {
-        moneyText.SetText("Money value: " + moneyValue);
+        mineral1Text.SetText("Iron amount: " + mineral1Value);
+        mineral2Text.SetText("Copper amount: " + mineral2Value); //Set the texts value so that they update constantly.
+        mineral3Text.SetText("Teralium amount: " + mineral3Value);
+
         //gameTimer += Time.deltaTime;
-
-        if (Physics.Raycast(scanObject.transform.position, Vector3.forward, out RaycastHit hitPlanet, 50f))
-        {
-            currentSelectedPlanet = hitPlanet.collider.gameObject;
-
-            Debug.Log(currentSelectedPlanet.GetComponent<Planet>().planetUpgrades[0]);
-        }
-
+        StartHitScanningForPlanet(); //Can be put down as invokeRepeating if causing issues
+        ChangeMaterials();
+        
     }
 
     #region Button things here
     public void AddClickMoney()
     {
-        moneyValue++;
+        switch (selectedMaterial)
+        {
+            default: mineral1Value++;
+                break;
+
+            case 0: mineral1Value++;
+                break;
+            case 1: mineral2Value++; 
+                break;
+            case 2: mineral3Value++;
+                break;
+        }
     }
 
     public void MoveLeft()
     {
         //Slide to the left
          currentPlanetIndex--;
-        //TellMeWhichPlanet();
     }
     public void MoveRight()
     {
         //Slide to the right
         currentPlanetIndex++;
-        //TellMeWhichPlanet();
     }
     #endregion
 
-    public void AddMoneyPerSecond(int howMuchPerSecond)
+    public void AddMoneyPerSecond(int plusMineral1, int plusMineral2, int plusMineral3) //This won't stay the same for long as I now have multiple materials. I think I have an idea of how to make it interchangeable
+        //int how much per second, and also take what mineral to add to. Add a switch case that adds to said mineralAmount.
     {
 
-        moneyValue += howMuchPerSecond;
+        mineral1Value += plusMineral1;
+        mineral2Value += plusMineral2;
+        mineral3Value += plusMineral3;
 
     }
 
-    private void TellMeWhichPlanet()
+    private void ChangeMaterials()
     {
-        switch (currentPlanetIndex)
+        if(Input.GetKeyDown(KeyCode.Comma) && selectedMaterial == 0) //If willing to switch materials, but are on last material, switch to the last material.
         {
-            default:
-                print("Currently in our solar system");
-                break;
-            case 0:
-                Debug.Log("Currently on Mercury"); //Cooked.
-                break;
-            case 1:
-                Debug.Log("Currently on Venus");
-                break;
-            case 2:
-                Debug.Log("Currently on Earth");
-                break;
-            case 3:
-                Debug.Log("Currently on Mars");
-                break;
-            case 4:
-                Debug.Log("Currently on Jupiter");
-                break;
-            case 5:
-                Debug.Log("Currently on Saturn");
-                break;
-            case 6:
-                Debug.Log("Currently on Uranus");
-                break;
-            case 7:
-                Debug.Log("Currently on Neptune");
-                break;
+            selectedMaterial = 2;
+        }
+        else if(Input.GetKeyDown(KeyCode.Comma))//Otherwise, just switch down one.
+        {
+            selectedMaterial--;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Period) && selectedMaterial == 2)//If willing to switch materials, but are on last material, switch to the first material.
+        {
+            selectedMaterial = 0;
+        }
+        else if(Input.GetKeyDown(KeyCode.Period)) //Otherwise, just switch up one.
+        {
+            selectedMaterial++;
         }
     }
 
+    private void StartHitScanningForPlanet()
+    {
+        if (Physics.Raycast(scanObject.transform.position, Vector3.forward, out RaycastHit hitPlanet, 200f)) //shoots a ray that gets the component we need.
+        {
+            currentSelectedPlanet = hitPlanet.collider.gameObject;  //Potential performance loss here.
+        }
+    }
 }

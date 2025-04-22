@@ -8,6 +8,8 @@ public class CameraBehavior : MonoBehaviour
     [SerializeField] private GameObject gameManagerReference;
     [SerializeField] protected GameObject[] planetIndex = new GameObject[8];
 
+    [SerializeField] private float cameraSpeed = 0f;
+
     private Vector3 newCameraPosition;
 
 
@@ -29,12 +31,12 @@ public class CameraBehavior : MonoBehaviour
         //Set the array index to the currentPlanetIndex value.
         planetIndex[GameManager.currentPlanetIndex] = planetIndex[GameManager.currentPlanetIndex];
 
-        //This is the bit that handles the new camera position, it is updated constantly. For some reason when put in MoveLeft or MoveRight it doesn't work right.
+        //This is the bit that handles the new camera position, it is updated constantly.
         if (planetIndex[GameManager.currentPlanetIndex] != null)
         {
             newCameraPosition = planetIndex[GameManager.currentPlanetIndex].transform.position;
         }
 
-        cameraObj.transform.position = Vector3.Lerp(cameraObj.transform.position, newCameraPosition, 5f * Time.deltaTime);
+        cameraObj.transform.position = Vector3.Lerp(cameraObj.transform.position, newCameraPosition, cameraSpeed * Time.deltaTime);
     }
 }

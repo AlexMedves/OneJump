@@ -10,12 +10,15 @@ public class Planet : MonoBehaviour
     protected GameManager gameManagerScript;
 
     [Header("Planet Features")]
-    [SerializeField] protected string planetName;
+    public string planetName;
     [SerializeField] private bool isPlanetUnlocked = false;
     [SerializeField] private float realPlanetSpinSpeed = 0f;
     [SerializeField] private float planetSpinSpeed = 0f;
     [SerializeField] private int planetResearchValue = 0;
-    [SerializeField] private int moneyMadePerSecond = 0;
+    public int mineral1MadePerSecond = 0;
+    public int mineral2MadePerSecond = 0;
+    public int mineral3MadePerSecond = 0;
+
 
 
     private float gameTimer = 0f;
@@ -27,7 +30,10 @@ public class Planet : MonoBehaviour
     [SerializeField] static private bool isRealRotationActive = false;
 
     [Header("Planet Upgrades Values")]
-    [SerializeField] public float[] planetUpgrades = new float[4];
+    public int[] planetUpgrades = new int[4];
+    public int mineral1UpgradeLvl = 1;
+    public int mineral2UpgradeLvl = 1;
+    public int mineral3UpgradeLvl = 1;
 
 
     private void Awake()
@@ -45,19 +51,18 @@ public class Planet : MonoBehaviour
             if (gameTimer > gameTimerDelay)
             {
                 gameTimer = 0f;
-                gameManagerScript.AddMoneyPerSecond(moneyMadePerSecond);
+                gameManagerScript.AddMoneyPerSecond(mineral1MadePerSecond, mineral2MadePerSecond, mineral3MadePerSecond);
 
-                if(moneyMadePerSecond !=0)
-                {
-                    Debug.Log($"Money added : {moneyMadePerSecond} from {planetName}");
-                }
+                //if(moneyMadePerSecond !=0)
+                //{
+                //    Debug.Log($"Money added : {moneyMadePerSecond} from {planetName}");
+                //}
 
             }
         }
         SpinThePlanet(planetRigidBody);
         
     }
-
 
 
 
@@ -84,13 +89,13 @@ public class Planet : MonoBehaviour
         set { planetResearchValue = value; }
     }
 
-    protected int MoneyMadePerSecond
-    {
-        get { return moneyMadePerSecond; }
-        set { moneyMadePerSecond = value; }
-    }
+    //protected int MoneyMadePerSecond
+    //{
+    //    get { return moneyMadePerSecond; }
+    //    set { moneyMadePerSecond = value; }
+    //}
 
-    protected float SetPlanetUpgradeValue(int planetUpgradeIndex, float planetUpgradeValue)
+    protected float SetPlanetUpgradeValue(int planetUpgradeIndex, int planetUpgradeValue)
     {
         planetUpgrades[planetUpgradeIndex] = planetUpgradeValue;
         return planetUpgrades[planetUpgradeIndex];
@@ -104,7 +109,7 @@ public class Planet : MonoBehaviour
 
     #endregion
 
-    protected void SpinThePlanet(Rigidbody planetRb)
+    protected void SpinThePlanet(Rigidbody planetRb) //Takes rigidbody and spins planet
     {
         if (Input.GetKeyDown(KeyCode.V) && RealRotationStatus == false)
         {
