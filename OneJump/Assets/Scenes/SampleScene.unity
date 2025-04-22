@@ -3024,7 +3024,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2082899737}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 533265962}
+        m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
+        m_MethodName: PressUpgrade3
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2082899737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3116,7 +3128,9 @@ MonoBehaviour:
   realPlanetSpinSpeed: 45.6
   planetSpinSpeed: 28
   planetResearchValue: 0
-  moneyMadePerSecond: 0
+  mineral1MadePerSecond: 0
+  mineral2MadePerSecond: 0
+  mineral3MadePerSecond: 0
   planetUpgrades: a00f0000a00f0000a0280000803e0000
   mineral1UpgradeLvl: 1
   mineral2UpgradeLvl: 1
@@ -3775,7 +3789,9 @@ MonoBehaviour:
   realPlanetSpinSpeed: 0.086
   planetSpinSpeed: 13
   planetResearchValue: 0
-  moneyMadePerSecond: 0
+  mineral1MadePerSecond: 0
+  mineral2MadePerSecond: 0
+  mineral3MadePerSecond: 0
   planetUpgrades: d0070000d007000050140000401f0000
   mineral1UpgradeLvl: 1
   mineral2UpgradeLvl: 1
@@ -4015,7 +4031,9 @@ MonoBehaviour:
   realPlanetSpinSpeed: 14.79
   planetSpinSpeed: 18
   planetResearchValue: 0
-  moneyMadePerSecond: 0
+  mineral1MadePerSecond: 0
+  mineral2MadePerSecond: 0
+  mineral3MadePerSecond: 0
   planetUpgrades: 803e0000803e000080a2000040900200
   mineral1UpgradeLvl: 1
   mineral2UpgradeLvl: 1
@@ -4173,7 +4191,9 @@ MonoBehaviour:
   realPlanetSpinSpeed: 9.7
   planetSpinSpeed: 15
   planetResearchValue: 0
-  moneyMadePerSecond: 0
+  mineral1MadePerSecond: 0
+  mineral2MadePerSecond: 0
+  mineral3MadePerSecond: 0
   planetUpgrades: 007d0000007d00000045010080200500
   mineral1UpgradeLvl: 1
   mineral2UpgradeLvl: 1
@@ -4623,7 +4643,9 @@ MonoBehaviour:
   realPlanetSpinSpeed: 36.84
   planetSpinSpeed: 22
   planetResearchValue: 0
-  moneyMadePerSecond: 0
+  mineral1MadePerSecond: 0
+  mineral2MadePerSecond: 0
+  mineral3MadePerSecond: 0
   planetUpgrades: 401f0000401f00004051000010a40000
   mineral1UpgradeLvl: 1
   mineral2UpgradeLvl: 1
@@ -4728,7 +4750,9 @@ MonoBehaviour:
   realPlanetSpinSpeed: 0.00652
   planetSpinSpeed: 9
   planetResearchValue: 0
-  moneyMadePerSecond: 0
+  mineral1MadePerSecond: 0
+  mineral2MadePerSecond: 0
+  mineral3MadePerSecond: 0
   planetUpgrades: f4010000f401000014050000d0070000
   mineral1UpgradeLvl: 1
   mineral2UpgradeLvl: 1
@@ -5087,8 +5111,10 @@ MonoBehaviour:
   realPlanetSpinSpeed: 0.00183
   planetSpinSpeed: 13
   planetResearchValue: 0
-  moneyMadePerSecond: 10
-  planetUpgrades: fa000000fa000000bc020000e8030000
+  mineral1MadePerSecond: 0
+  mineral2MadePerSecond: 0
+  mineral3MadePerSecond: 0
+  planetUpgrades: 320000003200000096000000
   mineral1UpgradeLvl: 1
   mineral2UpgradeLvl: 1
   mineral3UpgradeLvl: 1
@@ -5529,7 +5555,9 @@ MonoBehaviour:
   realPlanetSpinSpeed: 0.157
   planetSpinSpeed: 18
   planetResearchValue: 0
-  moneyMadePerSecond: 0
+  mineral1MadePerSecond: 0
+  mineral2MadePerSecond: 0
+  mineral3MadePerSecond: 0
   planetUpgrades: e8030000e8030000280a0000a00f0000
   mineral1UpgradeLvl: 1
   mineral2UpgradeLvl: 1
