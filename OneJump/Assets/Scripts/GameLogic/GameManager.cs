@@ -106,4 +106,9 @@ public class GameManager : MonoBehaviour
             currentSelectedPlanet = hitPlanet.collider.gameObject;  //Potential performance loss here.
         }
     }
+
+//    protected bool CanAfford(int priceMineral1, int priceMineral2, int priceMineral3)
+//    {
+
+//    }
 }

@@ -14,7 +14,7 @@ public class Planet : MonoBehaviour
     [SerializeField] public bool isPlanetUnlocked = false;
     [SerializeField] private float realPlanetSpinSpeed = 0f;
     [SerializeField] private float planetSpinSpeed = 0f;
-    [SerializeField] private int planetResearchValue = 0;
+    [SerializeField] public int planetResearchValue = 0;
     public int mineral1MadePerSecond = 0;
     public int mineral2MadePerSecond = 0;
     public int mineral3MadePerSecond = 0;

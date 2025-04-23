@@ -15,6 +15,7 @@ That list will therefore reside here:
 !~Version 0.01: https://www.youtube.com/watch?v=GU8htjxY6ro </br>
 !~Version 0.02: https://www.youtube.com/watch?v=Dvwaq1rwioQ </br>
 !~Version 0.03: https://www.youtube.com/watch?v=iTC49Hi4hb8 </br>
+!~Version 0.03: https://www.youtube.com/watch?v=tXB7odE1HuA </br>
   
 [ |===================| ]
 </H4>
@@ -78,3 +79,16 @@ This time around I didn't add new features per se, however I developed onto exis
 I am unsure of some of the previous code I have written optimization wise that is, but so far it has not caused any issues, I have commented the code so that I can come back
 at a later date if needed.
 
+<H2>Version 0.04</H2>
+<H3>New Features: </H3>
+Version 0.04
++ You can now unlock new planets. </br>
++ Upgrades now cost multiple resources. </br>
++ Upgrade values have changed. </br>
++ You can no longer purchase upgrades on planets that are not owned. </br> 
+? Started making improvements of workflow. </br>
+
+<H3>Description</H3>
+I started having some thoughts about the workflow in some scripts, noticing that I repeat certain operations quite a few times, I want to have function(s)
+handle that without chunks of text having to be pretty much copied and pasted across places.
+Functions such as this will be placed in GameManager where they can be accessed widely across scripts.

@@ -14,6 +14,9 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] TMP_Text upgrade2Level;
     [SerializeField] TMP_Text upgrade3Level;
 
+    [SerializeField] TMP_Text planetPriceText;
+    private int planetPrice;
+
     //Increment values for the upgrades. After purchasing said upgrade, value goes up.
     private int upgr1Incr = 50;
     private int upgr2Incr = 50; //These might need to be changed.
@@ -23,7 +26,8 @@ public class UpgradeManager : MonoBehaviour
     Planet planetComponent;
     GameManager gameManager;
 
-    [SerializeField] private Button unlockPlanet;
+    [SerializeField] private GameObject unlockPlanetButton;
+    [SerializeField] private GameObject clickerButton;
 
 
     // Start is called before the first frame update
@@ -32,7 +36,6 @@ public class UpgradeManager : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         InvokeRepeating(nameof(GetCurrentPlanetStats), 0.2f, 1f);
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -46,6 +49,21 @@ public class UpgradeManager : MonoBehaviour
             upgrade1Level.SetText($"Level : {planetComponent.mineral1UpgradeLvl}");
             upgrade2Level.SetText($"Level : {planetComponent.mineral2UpgradeLvl}");
             upgrade3Level.SetText($"Level : {planetComponent.mineral3UpgradeLvl}");
+
+            planetPrice = planetComponent.planetResearchValue / 3;
+            planetPriceText.SetText($"Unlock : {planetComponent.planetName}? Price: {planetPrice}");
+            
+
+            if(!planetComponent.isPlanetUnlocked)
+            {
+                unlockPlanetButton.SetActive(true);
+                clickerButton.SetActive(false);
+            }
+            else
+            {
+                unlockPlanetButton.SetActive(false);
+                clickerButton.SetActive(true);
+            }
         }
 
     }
@@ -108,11 +126,25 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
+    public void PressPurchasePlanet() //Purchase Planet
+    {
+        if (GameManager.mineral1Amount >= planetPrice && GameManager.mineral2Amount >= planetPrice && GameManager.mineral3Amount >= planetPrice)
+        {
+
+            GameManager.mineral1Amount -= planetPrice;
+            GameManager.mineral2Amount -= planetPrice;
+            GameManager.mineral3Amount -= planetPrice;
+
+            planetComponent.isPlanetUnlocked = true;
+
+        }
+    }
+
     private void GetCurrentPlanetStats()
     {
         if (GameManager.currentSelectedPlanet != null)
         {
-            planetComponent = GameManager.currentSelectedPlanet.GetComponent<Planet>(); //Gets he planet component, put it in a function to call invoke every few seconds.
+            planetComponent = GameManager.currentSelectedPlanet.GetComponent<Planet>(); //Gets the planet component, put it in a function to call invoke every few seconds.
         }
     }
 }
