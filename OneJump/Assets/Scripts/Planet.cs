@@ -12,18 +12,13 @@ public class Planet : MonoBehaviour
     [Header("Planet Features")]
     public string planetName;
     [SerializeField] public bool isPlanetUnlocked = false;
+
     [SerializeField] private float realPlanetSpinSpeed = 0f;
     [SerializeField] private float planetSpinSpeed = 0f;
     [SerializeField] public int planetResearchValue = 0;
     public int mineral1MadePerSecond = 0;
     public int mineral2MadePerSecond = 0;
     public int mineral3MadePerSecond = 0;
-
-
-
-    private float gameTimer = 0f;
-    private readonly float gameTimerDelay = 1f;
-
 
     private Rigidbody planetRigidBody;
 
@@ -40,22 +35,15 @@ public class Planet : MonoBehaviour
     {
         planetRigidBody = this.GetComponent<Rigidbody>();
         gameManagerScript = FindObjectOfType<GameManager>(true);
+
+        gameManagerScript.gatherResources += GatherResources; //Subscribing to function
     }
 
     private void Update()
     {
-        gameTimer += Time.deltaTime;
-
-        if (isPlanetUnlocked) //This might not be needed, as locked planets won't have any value of money to give you anyway.
-        {
-            if (gameTimer > gameTimerDelay)
-            {
-                gameTimer = 0f;
-                gameManagerScript.AddMoneyPerSecond(mineral1MadePerSecond, mineral2MadePerSecond, mineral3MadePerSecond);
-            }
-        }
         SpinThePlanet(planetRigidBody);
-        
+
+
     }
 
     #region Planet Basic Values
@@ -120,5 +108,12 @@ public class Planet : MonoBehaviour
         {
             planetRb.transform.Rotate(0, PlanetSpeed * Time.deltaTime, 0);
         }
+    }
+
+    protected void GatherResources()
+    {
+        if (!isPlanetUnlocked) return;
+
+        gameManagerScript.AddMoneyPerSecond(mineral1MadePerSecond, mineral2MadePerSecond, mineral3MadePerSecond);
     }
 }

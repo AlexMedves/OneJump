@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -7,11 +8,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+
     static public int mineral1Amount = 0;
     static public int mineral2Amount = 0;
     static public int mineral3Amount = 0;
 
     //static private int actualMoney = moneyValue;
+
+    static public float gameTimer = 0f;
+    private readonly float gameTimerDelay = 1f;
+    public Action gatherResources;
 
 
     [Header("General Object References")]
@@ -36,7 +42,14 @@ public class GameManager : MonoBehaviour
         //gameTimer += Time.deltaTime;
         StartHitScanningForPlanet(); //Can be put down as invokeRepeating if causing issues
         ChangeMaterials();
-        
+
+        gameTimer += Time.deltaTime;
+        if (gameTimer > gameTimerDelay)
+        {
+            gameTimer = 0f;
+            gatherResources.Invoke(); //Invoking Actions
+
+        }
     }
 
     #region Button things here
