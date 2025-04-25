@@ -72,12 +72,12 @@ public class UpgradeManager : MonoBehaviour
     {
         if (planetComponent.isPlanetUnlocked)
         {
-            if (GameManager.mineral1Amount >= planetComponent.planetUpgradePrice[0] && GameManager.mineral2Amount >= upgr1Incr)
+            if (gameManager.mineral1Amount >= planetComponent.planetUpgradePrice[0] && gameManager.mineral2Amount >= upgr1Incr)
             {
                 planetComponent.mineral1MadePerSecond += 2 + planetComponent.mineral1UpgradeLvl; // make this much more per second.
-                GameManager.mineral1Amount -= planetComponent.planetUpgradePrice[0];
+                gameManager.mineral1Amount -= planetComponent.planetUpgradePrice[0];
 
-                GameManager.mineral2Amount -= upgr1Incr;
+                gameManager.mineral2Amount -= upgr1Incr;
 
                 upgr1Incr += 20;
 
@@ -91,12 +91,12 @@ public class UpgradeManager : MonoBehaviour
     {
         if (planetComponent.isPlanetUnlocked)
         {
-            if (GameManager.mineral2Amount >= planetComponent.planetUpgradePrice[1] && GameManager.mineral1Amount >= upgr2Incr)
+            if (gameManager.mineral2Amount >= planetComponent.planetUpgradePrice[1] && gameManager.mineral1Amount >= upgr2Incr)
             {
                 planetComponent.mineral2MadePerSecond += 2 + planetComponent.mineral2UpgradeLvl; //This needs to be an incremental value
 
-                GameManager.mineral2Amount -= planetComponent.planetUpgradePrice[1];
-                GameManager.mineral1Amount -= upgr2Incr;
+                gameManager.mineral2Amount -= planetComponent.planetUpgradePrice[1];
+                gameManager.mineral1Amount -= upgr2Incr;
                 upgr2Incr += 20;
 
                 planetComponent.planetUpgradePrice[1] = planetComponent.planetUpgradePrice[1] + (int)Mathf.Ceil(planetComponent.mineral2UpgradeLvl / 2);
@@ -109,13 +109,13 @@ public class UpgradeManager : MonoBehaviour
     {
         if (planetComponent.isPlanetUnlocked)
         {
-            if (GameManager.mineral3Amount >= planetComponent.planetUpgradePrice[2] && GameManager.mineral1Amount >= upgr3Incr && GameManager.mineral2Amount >= upgr3Incr2)
+            if (gameManager.mineral3Amount >= planetComponent.planetUpgradePrice[2] && gameManager.mineral1Amount >= upgr3Incr && gameManager.mineral2Amount >= upgr3Incr2)
             {
                 planetComponent.mineral3MadePerSecond += 2 + planetComponent.mineral3UpgradeLvl; //This needs to be an incremental value
 
-                GameManager.mineral3Amount -= planetComponent.planetUpgradePrice[2];
-                GameManager.mineral1Amount -= upgr3Incr;
-                GameManager.mineral2Amount -= upgr3Incr2;
+                gameManager.mineral3Amount -= planetComponent.planetUpgradePrice[2];
+                gameManager.mineral1Amount -= upgr3Incr;
+                gameManager.mineral2Amount -= upgr3Incr2;
 
                 upgr3Incr += 20;
                 upgr3Incr2 += 20;
@@ -128,12 +128,12 @@ public class UpgradeManager : MonoBehaviour
 
     public void PressPurchasePlanet() //Purchase Planet
     {
-        if (GameManager.mineral1Amount >= planetPrice && GameManager.mineral2Amount >= planetPrice && GameManager.mineral3Amount >= planetPrice)
+        if (gameManager.mineral1Amount >= planetPrice && gameManager.mineral2Amount >= planetPrice && gameManager.mineral3Amount >= planetPrice)
         {
 
-            GameManager.mineral1Amount -= planetPrice;
-            GameManager.mineral2Amount -= planetPrice;
-            GameManager.mineral3Amount -= planetPrice;
+            gameManager.mineral1Amount -= planetPrice;
+            gameManager.mineral2Amount -= planetPrice;
+            gameManager.mineral3Amount -= planetPrice;
 
             planetComponent.isPlanetUnlocked = true;
 

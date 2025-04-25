@@ -791,7 +791,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -34, y: 0}
+  m_AnchoredPosition: {x: 369, y: 2}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &515850506
@@ -814,7 +814,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Mineral3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1285,7 +1285,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -391, y: 0}
+  m_AnchoredPosition: {x: -342, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &808385923
@@ -1308,7 +1308,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Mineral1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1626,16 +1626,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraObj: {fileID: 963194227}
-  gameManagerReference: {fileID: 4637410512493016770}
-  planetIndex:
-  - {fileID: 5311435227181002966}
-  - {fileID: 3696329570917734935}
-  - {fileID: 5578329172644231698}
-  - {fileID: 1569961217109322961}
-  - {fileID: 7858225489700653665}
-  - {fileID: 2996492626152134980}
-  - {fileID: 6328900864771630444}
-  - {fileID: 6728836434833846472}
   cameraSpeed: 6
 --- !u!1 &1030864331
 GameObject:
@@ -1671,7 +1661,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -388, y: -60}
+  m_AnchoredPosition: {x: 4, y: -1}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1030864333
@@ -1694,7 +1684,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Mineral2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5613,9 +5603,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49ed85aa4f854a14eb30a29318a949b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mineral1Amount: 0
+  mineral2Amount: 0
+  mineral3Amount: 0
   mineral1Text: {fileID: 808385923}
   mineral2Text: {fileID: 1030864333}
   mineral3Text: {fileID: 515850506}
+  planetObject:
+  - {fileID: 5311435227181002966}
+  - {fileID: 3696329570917734935}
+  - {fileID: 5578329172644231698}
+  - {fileID: 1569961217109322961}
+  - {fileID: 7858225489700653665}
+  - {fileID: 2996492626152134980}
+  - {fileID: 6328900864771630444}
+  - {fileID: 6728836434833846472}
   scanObject: {fileID: 112108975}
 --- !u!1 &8546616564985562731
 GameObject:

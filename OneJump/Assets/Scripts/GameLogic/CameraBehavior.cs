@@ -5,8 +5,7 @@ using UnityEngine;
 public class CameraBehavior : MonoBehaviour
 {
     [SerializeField] private Camera cameraObj;
-    [SerializeField] private GameObject gameManagerReference;
-    [SerializeField] protected GameObject[] planetIndex = new GameObject[8];
+    private GameManager gameManagerScript;
 
     [SerializeField] private float cameraSpeed = 0f;
 
@@ -16,25 +15,28 @@ public class CameraBehavior : MonoBehaviour
     private void Awake()
     {
         cameraObj = GetComponent<Camera>();
+        gameManagerScript = FindObjectOfType<GameManager>();
+        
     }
 
     private void Update()
     {
-        PlanetPositionLogic();
+        CameraPositionLogic();
     }
 
 
-    private void PlanetPositionLogic()
+    private void CameraPositionLogic()
     {
         //Stop the planetIndex values between 0 and 8.
-        GameManager.currentPlanetIndex = Mathf.Clamp(GameManager.currentPlanetIndex, 0, planetIndex.Length - 1);
+        GameManager.currentPlanetIndex = Mathf.Clamp(GameManager.currentPlanetIndex, 0, gameManagerScript.planetObject.Length - 1);
         //Set the array index to the currentPlanetIndex value.
-        planetIndex[GameManager.currentPlanetIndex] = planetIndex[GameManager.currentPlanetIndex];
+        gameManagerScript.planetObject[GameManager.currentPlanetIndex] = gameManagerScript.planetObject[GameManager.currentPlanetIndex];
+        
 
         //This is the bit that handles the new camera position, it is updated constantly.
-        if (planetIndex[GameManager.currentPlanetIndex] != null)
+        if (gameManagerScript.planetObject[GameManager.currentPlanetIndex] != null)
         {
-            newCameraPosition = planetIndex[GameManager.currentPlanetIndex].transform.position;
+            newCameraPosition = gameManagerScript.planetObject[GameManager.currentPlanetIndex].transform.position;
         }
 
         cameraObj.transform.position = Vector3.Lerp(cameraObj.transform.position, newCameraPosition, cameraSpeed * Time.deltaTime);

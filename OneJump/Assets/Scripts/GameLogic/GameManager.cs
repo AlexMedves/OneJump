@@ -9,14 +9,19 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    static public int mineral1Amount = 0;
-    static public int mineral2Amount = 0;
-    static public int mineral3Amount = 0;
+     public int mineral1Amount = 0;
+     public int mineral2Amount = 0;
+     public int mineral3Amount = 0;
 
     //static private int actualMoney = moneyValue;
 
     static public float gameTimer = 0f;
     private readonly float gameTimerDelay = 1f;
+
+    static private float saveTimer = 0f;
+    private float saveTimerDelay = 300f;
+
+    public Action saveGame;
     public Action gatherResources;
 
 
@@ -28,10 +33,15 @@ public class GameManager : MonoBehaviour
 
     [Header("Planet Logic Stuff")]
     [SerializeField] static public int currentPlanetIndex = 0;
+    public GameObject[] planetObject = new GameObject[8];
 
-     [SerializeField] private GameObject scanObject;
+    [SerializeField] private GameObject scanObject;
      static public GameObject currentSelectedPlanet;
 
+    private void Awake()
+    {
+        saveGame += saveTheGame;
+    }
 
     private void Update()
     {
@@ -44,11 +54,18 @@ public class GameManager : MonoBehaviour
         ChangeMaterials();
 
         gameTimer += Time.deltaTime;
+        saveTimer += Time.deltaTime;
         if (gameTimer > gameTimerDelay)
         {
             gameTimer = 0f;
             gatherResources.Invoke(); //Invoking Actions
 
+        }
+
+        if(saveTimer > saveTimerDelay)
+        {
+            saveTimer = 0f;
+            saveGame.Invoke();
         }
     }
 
@@ -118,6 +135,12 @@ public class GameManager : MonoBehaviour
         {
             currentSelectedPlanet = hitPlanet.collider.gameObject;  //Potential performance loss here.
         }
+    }
+
+    private void saveTheGame()
+    {
+        SaveSystem.SaveData(FindObjectsOfType<Planet>(), this);
+        Debug.Log("saved the game");
     }
 
 //    protected bool CanAfford(int priceMineral1, int priceMineral2, int priceMineral3)

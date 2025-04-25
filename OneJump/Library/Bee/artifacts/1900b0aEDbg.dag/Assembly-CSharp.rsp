@@ -356,7 +356,9 @@
 -analyzer:"C:/Unity/UnityVers/2022.3.29f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Unity/UnityVers/2022.3.29f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scripts/GameLogic/CameraBehavior.cs"
+"Assets/Scripts/GameLogic/GameData.cs"
 "Assets/Scripts/GameLogic/GameManager.cs"
+"Assets/Scripts/GameLogic/SaveSystem.cs"
 "Assets/Scripts/GameLogic/UpgradeManager.cs"
 "Assets/Scripts/Planet.cs"
 -langversion:9.0
