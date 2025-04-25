@@ -19,7 +19,7 @@ public class SaveSystem
         }
     }
 
-    public static GameData LoadData(Planet planet, GameManager gameManager)
+    public static GameData LoadData()
     {
         string path = Application.persistentDataPath + "/gamedata.stitch";
         if (File.Exists(path))

@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        saveGame += saveTheGame;
+        saveGame += SaveTheGame;
     }
 
     private void Update()
@@ -137,10 +137,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void saveTheGame()
+    public void SaveTheGame()
     {
         SaveSystem.SaveData(FindObjectsOfType<Planet>(), this);
         Debug.Log("saved the game");
+    }
+
+    public void LoadTheGame()
+    {
+        GameData data = SaveSystem.LoadData();
+
+        mineral1Amount = data.resources[0];
+        mineral2Amount = data.resources[1];
+        mineral3Amount = data.resources[2];
+
+        currentPlanetIndex = data.currentSelectedPlanetIndex;
+
+        
+
     }
 
 //    protected bool CanAfford(int priceMineral1, int priceMineral2, int priceMineral3)
