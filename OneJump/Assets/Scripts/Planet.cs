@@ -4,6 +4,23 @@ using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 
+[System.Serializable]
+public class PlanetSaveData
+{
+    public string planetName;
+    public bool isPlanetUnlocked;//
+
+    public int mineral1MadePerSecond;//
+    public int mineral2MadePerSecond;//
+    public int mineral3MadePerSecond;//
+
+    public int[] planetUpgradePrice;//
+    public int mineral1UpgradeLvl;//
+    public int mineral2UpgradeLvl;//
+    public int mineral3UpgradeLvl;//
+}
+
+
 public class Planet : MonoBehaviour
 {
     [Header("Game Manager Things")]
@@ -11,25 +28,25 @@ public class Planet : MonoBehaviour
 
     [Header("Planet Features")]
     public string planetName;
-    [SerializeField] public bool isPlanetUnlocked = false;
+    [SerializeField] public bool isPlanetUnlocked = false;//
 
     [SerializeField] private float realPlanetSpinSpeed = 0f;
     [SerializeField] private float planetSpinSpeed = 0f;
     [SerializeField] public int planetResearchValue = 0;
-    public int mineral1MadePerSecond = 0;
-    public int mineral2MadePerSecond = 0;
-    public int mineral3MadePerSecond = 0;
+    public int mineral1MadePerSecond = 0;//
+    public int mineral2MadePerSecond = 0;//
+    public int mineral3MadePerSecond = 0;//
 
     private Rigidbody planetRigidBody;
 
     static public bool isRealRotationActive = false;
 
     [Header("Planet Upgrades Values")]
-    public int[] planetUpgradePrice = new int[3];
-    public int mineral1UpgradeLvl = 1;
-    public int mineral2UpgradeLvl = 1;
-    public int mineral3UpgradeLvl = 1;
-
+    public int[] planetUpgradePrice = new int[3];//
+    public int mineral1UpgradeLvl = 1;//
+    public int mineral2UpgradeLvl = 1;//
+    public int mineral3UpgradeLvl = 1;//
+    
 
     private void Awake()
     {
@@ -68,13 +85,6 @@ public class Planet : MonoBehaviour
         get { return planetResearchValue; }
         set { planetResearchValue = value; }
     }
-
-    //protected int MoneyMadePerSecond
-    //{
-    //    get { return moneyMadePerSecond; }
-    //    set { moneyMadePerSecond = value; }
-    //}
-
     protected float SetPlanetUpgradeValue(int planetUpgradeIndex, int planetUpgradeValue)
     {
         planetUpgradePrice[planetUpgradeIndex] = planetUpgradeValue;
@@ -115,5 +125,39 @@ public class Planet : MonoBehaviour
         if (!isPlanetUnlocked) return;
 
         gameManagerScript.AddMoneyPerSecond(mineral1MadePerSecond, mineral2MadePerSecond, mineral3MadePerSecond);
+    }
+
+
+    public PlanetSaveData SaveState()
+    {
+        return new PlanetSaveData()
+        {
+            planetName = this.planetName,
+            isPlanetUnlocked = this.isPlanetUnlocked,
+            mineral1MadePerSecond = this.mineral1MadePerSecond,
+            mineral2MadePerSecond = this.mineral2MadePerSecond,
+            mineral3MadePerSecond = this.mineral3MadePerSecond,
+
+            mineral1UpgradeLvl = this.mineral1UpgradeLvl,
+            mineral2UpgradeLvl = this.mineral2UpgradeLvl,
+            mineral3UpgradeLvl = this.mineral3UpgradeLvl,
+
+            planetUpgradePrice = this.planetUpgradePrice,
+        };
+    }
+
+    public void LoadPlanetData(PlanetSaveData data)
+    {
+        planetName = data.planetName;
+        isPlanetUnlocked = data.isPlanetUnlocked;
+        mineral1MadePerSecond = data.mineral1MadePerSecond;
+        mineral2MadePerSecond = data.mineral2MadePerSecond;
+        mineral3MadePerSecond = data.mineral3MadePerSecond;
+        
+        mineral1UpgradeLvl = data.mineral1UpgradeLvl;
+        mineral2UpgradeLvl = data.mineral2UpgradeLvl;
+        mineral3UpgradeLvl = data.mineral3UpgradeLvl;
+
+        planetUpgradePrice = data.planetUpgradePrice;
     }
 }

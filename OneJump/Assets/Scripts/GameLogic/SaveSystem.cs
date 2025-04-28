@@ -1,44 +1,116 @@
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Collections.Generic;
+using System.Linq;
 
-public class SaveSystem
+public class SaveSystem : MonoBehaviour
 {
-    public static void SaveData(Planet[] planet, GameManager gameManager)
+
+    [System.Serializable]
+    private class GameSaveWrapper
     {
-        BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/gamedata.stitch";
-
-        using(FileStream stream = new FileStream(path, FileMode.Create))
-        {
-
-            GameData data = new GameData(planet, gameManager);
-
-            formatter.Serialize(stream, data);
-            stream.Close();
-        }
+        public List<PlanetSaveData> planets;
+        public GameManagerSaveData gameManger;
     }
 
-    public static GameData LoadData()
+    public class GameManagerSaveData
     {
-        string path = Application.persistentDataPath + "/gamedata.stitch";
-        if (File.Exists(path))
+        public int mineral1Amount;
+        public int mineral2Amount;
+        public int mineral3Amount;
+    }
+
+
+    public void SaveData(string filename)
+    {
+
+        Planet[] planets = FindObjectsOfType<Planet>();
+        List<PlanetSaveData> planetsData = new List<PlanetSaveData>();
+
+        foreach (Planet planet in planets)
         {
-            BinaryFormatter formatter = new BinaryFormatter();
+            planetsData.Add(planet.SaveState());
+        }
 
-            using (FileStream stream = new FileStream(path, FileMode.Open))
+        GameManager gameManager = FindObjectOfType<GameManager>();
+        GameManagerSaveData gameManagerSaveData = new GameManagerSaveData()
+        {
+            mineral1Amount = gameManager.mineral1Amount,
+            mineral2Amount = gameManager.mineral2Amount,
+            mineral3Amount = gameManager.mineral3Amount
+        };
+
+        GameSaveWrapper wrapper = new GameSaveWrapper()
+        {
+            planets = planetsData,
+            gameManger = gameManagerSaveData
+        };
+
+        string json = JsonUtility.ToJson(wrapper, true);
+        Debug.Log($"Saved the data at: {Application.persistentDataPath}/{filename}");
+    }
+
+    public void LoadData(string filename)
+    {
+        GameManager gameManager = FindObjectOfType<GameManager>();
+
+        string path = GetFilePath(filename);
+
+        if (!File.Exists(path))
+        {
+            Debug.LogError("There is no save file: " + path);
+            return;
+        }
+
+        string json = File.ReadAllText(path);
+        GameSaveWrapper wrapper = JsonUtility.FromJson<GameSaveWrapper>(json);
+
+        Planet[] currentPlanets = FindObjectsOfType<Planet>();
+
+
+        if(wrapper.planets.Count == currentPlanets.Length) //If everything is oki doki, then load file, no warning.
+        {
+            for(int i =0; i< currentPlanets.Length; i++)//Loads however many planets are currently in scene.
             {
+                currentPlanets[i].LoadPlanetData(wrapper.planets[i]);
+            }
+            gameManager.mineral1Amount = wrapper.gameManger.mineral1Amount;
+            gameManager.mineral2Amount = wrapper.gameManger.mineral2Amount;
+            gameManager.mineral3Amount = wrapper.gameManger.mineral3Amount;
+        }
+        else if( wrapper.planets.Count > currentPlanets.Length) //Checks if more planet than currently in game, which is bad bad.
+        {
+            Debug.LogWarning($"There are more planets in save file {wrapper.planets.Count} than current {currentPlanets.Length} ");
 
-                GameData data = formatter.Deserialize(stream) as GameData;
-                stream.Close();
-                return data;
+
+            for (int i = 0; i < currentPlanets.Length; i++)//Loads however many planets are currently in scene.
+            {
+                currentPlanets[i].LoadPlanetData(wrapper.planets[i]);
             }
 
+            gameManager.mineral1Amount = wrapper.gameManger.mineral1Amount;
+            gameManager.mineral2Amount = wrapper.gameManger.mineral2Amount;
+            gameManager.mineral3Amount = wrapper.gameManger.mineral3Amount;
         }
         else
         {
-            Debug.Log("No data found");
-            return null;
+            Debug.LogWarning($"There are fewer planets in save file {wrapper.planets.Count} than current {currentPlanets.Length} ");
+
+            for (int i = 0; i < currentPlanets.Length; i++)//Loads however many planets are currently in scene.
+            {
+                currentPlanets[i].LoadPlanetData(wrapper.planets[i]);
+            }
+
+            gameManager.mineral1Amount = wrapper.gameManger.mineral1Amount;
+            gameManager.mineral2Amount = wrapper.gameManger.mineral2Amount;
+            gameManager.mineral3Amount = wrapper.gameManger.mineral3Amount;
         }
+
+    }
+
+    private string GetFilePath(string filename)
+    {
+        return Path.Combine(Application.persistentDataPath, filename);
     }
 }

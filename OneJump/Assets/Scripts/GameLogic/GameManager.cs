@@ -8,6 +8,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private SaveSystem saveSystem;
 
      public int mineral1Amount = 0;
      public int mineral2Amount = 0;
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         saveGame += SaveTheGame;
+        saveSystem = this.GetComponent<SaveSystem>();
     }
 
     private void Update()
@@ -62,11 +64,14 @@ public class GameManager : MonoBehaviour
 
         }
 
-        if(saveTimer > saveTimerDelay)
-        {
-            saveTimer = 0f;
-            saveGame.Invoke();
-        }
+        SaveTheGame();
+        LoadTheGame();
+
+        //if(saveTimer > saveTimerDelay)
+        //{
+        //    saveTimer = 0f;
+        //    saveGame.Invoke();
+        //}
     }
 
     #region Button things here
@@ -139,22 +144,20 @@ public class GameManager : MonoBehaviour
 
     public void SaveTheGame()
     {
-        SaveSystem.SaveData(FindObjectsOfType<Planet>(), this);
-        Debug.Log("saved the game");
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            saveSystem.SaveData("SaveData.toot");
+            Debug.Log("Saved the game");
+        }
     }
 
     public void LoadTheGame()
     {
-        GameData data = SaveSystem.LoadData();
-
-        mineral1Amount = data.resources[0];
-        mineral2Amount = data.resources[1];
-        mineral3Amount = data.resources[2];
-
-        currentPlanetIndex = data.currentSelectedPlanetIndex;
-
-        
-
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            saveSystem.LoadData("SaveData.toot");
+            Debug.Log("Loaded the game");
+        }
     }
 
 //    protected bool CanAfford(int priceMineral1, int priceMineral2, int priceMineral3)
