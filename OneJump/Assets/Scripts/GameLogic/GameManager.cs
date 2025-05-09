@@ -19,8 +19,8 @@ public class GameManager : MonoBehaviour
     static public float gameTimer = 0f;
     private readonly float gameTimerDelay = 1f;
 
-    static private float saveTimer = 0f;
-    private float saveTimerDelay = 300f;
+    //static private float saveTimer = 0f;
+    //private float saveTimerDelay = 300f;
 
     public Action saveGame;
     public Action gatherResources;
@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
         ChangeMaterials();
 
         gameTimer += Time.deltaTime;
-        saveTimer += Time.deltaTime;
+        //saveTimer += Time.deltaTime;
         if (gameTimer > gameTimerDelay)
         {
             gameTimer = 0f;

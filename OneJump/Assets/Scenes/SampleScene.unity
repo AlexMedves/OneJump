@@ -5757,6 +5757,7 @@ MonoBehaviour:
   - {fileID: 2996492626152134980}
   - {fileID: 6328900864771630444}
   - {fileID: 6728836434833846472}
+  - {fileID: 0}
   scanObject: {fileID: 112108975}
 --- !u!114 &8504722631640033013
 MonoBehaviour:
@@ -5770,6 +5771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ee8e50508a8e64f92ed10cfafd4ff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
 --- !u!1 &8546616564985562731
 GameObject:
   m_ObjectHideFlags: 0
