@@ -5757,7 +5757,6 @@ MonoBehaviour:
   - {fileID: 2996492626152134980}
   - {fileID: 6328900864771630444}
   - {fileID: 6728836434833846472}
-  - {fileID: 0}
   scanObject: {fileID: 112108975}
 --- !u!114 &8504722631640033013
 MonoBehaviour:
