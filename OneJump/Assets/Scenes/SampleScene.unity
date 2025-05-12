@@ -4187,7 +4187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b70409d8afd79fc42898f1feadd18fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetName: Jaleb
+  planetName: 
   isPlanetUnlocked: 0
   realPlanetSpinSpeed: 0.086
   planetSpinSpeed: 13
@@ -5149,7 +5149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b70409d8afd79fc42898f1feadd18fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetName: Tralbar
+  planetName: 
   isPlanetUnlocked: 0
   realPlanetSpinSpeed: 0.00652
   planetSpinSpeed: 9
@@ -5510,7 +5510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b70409d8afd79fc42898f1feadd18fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetName: Mercury
+  planetName: 
   isPlanetUnlocked: 1
   realPlanetSpinSpeed: 0.00183
   planetSpinSpeed: 13
@@ -5980,7 +5980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b70409d8afd79fc42898f1feadd18fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetName: Gortun
+  planetName: 
   isPlanetUnlocked: 0
   realPlanetSpinSpeed: 0.157
   planetSpinSpeed: 18

@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     //static private float saveTimer = 0f;
     //private float saveTimerDelay = 300f;
 
-    public Action saveGame;
+    //public Action saveGame;
     public Action gatherResources;
 
 
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        saveGame += SaveTheGame;
+        //saveGame += SaveTheGame;
         saveSystem = this.GetComponent<SaveSystem>();
     }
 
@@ -146,7 +146,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.S))
         {
-            saveSystem.SaveData("SaveData.toot");
+            saveSystem.SaveData("SaveData.oj");
             Debug.Log("Saved the game");
         }
     }
@@ -155,7 +155,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.L))
         {
-            saveSystem.LoadData("SaveData.toot");
+            saveSystem.LoadData("SaveData.oj");
             Debug.Log("Loaded the game");
         }
     }

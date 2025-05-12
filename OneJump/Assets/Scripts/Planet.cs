@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
@@ -54,6 +55,8 @@ public class Planet : MonoBehaviour
         gameManagerScript = FindObjectOfType<GameManager>(true);
 
         gameManagerScript.gatherResources += GatherResources; //Subscribing to function
+
+        PickTheName();
     }
 
     private void Update()
@@ -98,6 +101,36 @@ public class Planet : MonoBehaviour
 
 
     #endregion
+
+    protected void PickTheName()
+    {
+        var prefixList = new List<string> {
+            "Tren", "Vart", "Luk", "Pot", "Jhin", "Gig", "Gag", "Uda", "Ari", "Zad", "Zag", "Mau", "Sama", "Ongo", "Muxi", "Llaya", "Gia", "Callu", "Tung"
+        };
+        var suffixList = new List<string> { 
+            "altur", "car", "not", "leo", "ban", "gof", "lea", "phus", "rah", "nov", "rro", "nus", "des", "tung", "iri", "potamus", "gawa", "ter", "nana", "shan"  
+        };
+
+        int randomPrefix = Random.Range(0, prefixList.Count);
+        int randomSuffix = Random.Range(0, suffixList.Count);
+
+        int cogPlanet = Random.Range(0, 80000);
+
+        if (planetName == "")
+        {
+            if(cogPlanet == 67389)
+            {
+                planetName = "Cozy Orangutan Planet";
+            }
+            //Debug.Log($"Object Name: {this.name}, Number: {randomPrefix}, Prefix: {prefixList[randomPrefix]}; Number: {randomSuffix}, Suffix: {suffixList[randomSuffix]}");
+            planetName = prefixList[randomPrefix] + suffixList[randomSuffix];
+
+            
+
+        }
+
+
+    }
 
     protected void SpinThePlanet(Rigidbody planetRb) //Takes rigidbody and spins planet
     {
