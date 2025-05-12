@@ -47,9 +47,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        mineral1Text.SetText("Iron amount: " + mineral1Amount);
-        mineral2Text.SetText("Copper amount: " + mineral2Amount); //Set the texts value so that they update constantly.
-        mineral3Text.SetText("Teralium amount: " + mineral3Amount);
+        mineral1Text.SetText("Relum amount: " + mineral1Amount);
+        mineral2Text.SetText("Kupru amount: " + mineral2Amount); //Set the texts value so that they update constantly.
+        mineral3Text.SetText("Trevleock amount: " + mineral3Amount);
 
         //gameTimer += Time.deltaTime;
         StartHitScanningForPlanet(); //Can be put down as invokeRepeating if causing issues
