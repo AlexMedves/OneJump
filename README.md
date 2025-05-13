@@ -15,7 +15,8 @@ That list will therefore reside here:
 !~Version 0.01: https://www.youtube.com/watch?v=GU8htjxY6ro </br>
 !~Version 0.02: https://www.youtube.com/watch?v=Dvwaq1rwioQ </br>
 !~Version 0.03: https://www.youtube.com/watch?v=iTC49Hi4hb8 </br>
-!~Version 0.03: https://www.youtube.com/watch?v=tXB7odE1HuA </br>
+!~Version 0.04: https://www.youtube.com/watch?v=tXB7odE1HuA </br>
+!~Version 0.05: https://www.youtube.com/watch?v=J0shA9J-4Nc </br>
   
 [ |===================| ]
 </H4>
@@ -91,3 +92,22 @@ at a later date if needed.
 I started having some thoughts about the workflow in some scripts, noticing that I repeat certain operations quite a few times, I want to have function(s)
 handle that without chunks of text having to be pretty much copied and pasted across places.
 Functions such as this will be placed in GameManager where they can be accessed widely across scripts.
+
+<H2>Version 0.05</H2>
+<H3>New Features: </H3>
+++ Created working branch separate of main. </br>
++ Planets now have randomly generated names. </br>
++ Mineral/Resource names have been changed. </br>
++ Added Save/Load system. </br>
+? Slight easter egg. </br>
++ Started blocking out research/mining facilities. </br>
++ Started working on possible planet models/features. </br>
++ Created one global game timer instead of many instances for each object. </br>
+? Changed Gitignore and Gitattributes directory. </br>
++ Fixed slight indexing issue with planet selection. </br>
+
+<H3>Description</H3>
+I ran into a little issue when making the Save and Load system, following a tutorial I found online at first, seeing as this was my first ever save/load function, I did my research
+and the method that was showcased within that tutorial was not amazing, too resource intensive and overall doing things in a complicated manner. So then I started re-working said system,
+instead choosing to go with saving files using JSON, everyone seemed to praise it, with plenty libraries/options to serialize the data. I have not yet serialized said data, but I plan on
+using Newtonsoft in order to do that.
