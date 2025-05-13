@@ -101,6 +101,11 @@ public class GameManager : MonoBehaviour
         //Slide to the right
         currentPlanetIndex++;
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
     #endregion
 
     public void AddMoneyPerSecond(int plusMineral1, int plusMineral2, int plusMineral3) //This won't stay the same for long as I now have multiple materials. I think I have an idea of how to make it interchangeable
