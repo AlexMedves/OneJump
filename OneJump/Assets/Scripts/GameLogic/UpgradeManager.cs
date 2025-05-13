@@ -42,9 +42,9 @@ public class UpgradeManager : MonoBehaviour
 
         if (planetComponent != null)
         {
-            upgrade1.SetText($"Price : {planetComponent.planetUpgradePrice[0]} iron, {upgr1Incr} copper."); //Needs this much x material, this much y material, this much z material.
-            upgrade2.SetText($"Price : {planetComponent.planetUpgradePrice[1]} copper, {upgr2Incr} iron.");
-            upgrade3.SetText($"Price : {planetComponent.planetUpgradePrice[2]} teralium, {upgr3Incr} iron, {upgr3Incr2} copper");
+            upgrade1.SetText($"Price : {planetComponent.planetUpgradePrice[0]} Relum, {upgr1Incr} Kupru."); //Needs this much x material, this much y material, this much z material.
+            upgrade2.SetText($"Price : {planetComponent.planetUpgradePrice[1]} Kupru, {upgr2Incr} Relum.");
+            upgrade3.SetText($"Price : {planetComponent.planetUpgradePrice[2]} Trevleock, {upgr3Incr} Relum, {upgr3Incr2} Kupru");
 
             upgrade1Level.SetText($"Level : {planetComponent.mineral1UpgradeLvl}");
             upgrade2Level.SetText($"Level : {planetComponent.mineral2UpgradeLvl}");
