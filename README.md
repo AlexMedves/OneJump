@@ -82,7 +82,6 @@ at a later date if needed.
 
 <H2>Version 0.04</H2>
 <H3>New Features: </H3>
-Version 0.04
 + You can now unlock new planets. </br>
 + Upgrades now cost multiple resources. </br>
 + Upgrade values have changed. </br>

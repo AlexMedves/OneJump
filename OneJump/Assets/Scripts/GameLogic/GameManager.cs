@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -7,11 +8,22 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    static public int mineral1Amount = 0;
-    static public int mineral2Amount = 0;
-    static public int mineral3Amount = 0;
+    private SaveSystem saveSystem;
+
+     public int mineral1Amount = 0;
+     public int mineral2Amount = 0;
+     public int mineral3Amount = 0;
 
     //static private int actualMoney = moneyValue;
+
+    static public float gameTimer = 0f;
+    private readonly float gameTimerDelay = 1f;
+
+    //static private float saveTimer = 0f;
+    //private float saveTimerDelay = 300f;
+
+    //public Action saveGame;
+    public Action gatherResources;
 
 
     [Header("General Object References")]
@@ -22,21 +34,44 @@ public class GameManager : MonoBehaviour
 
     [Header("Planet Logic Stuff")]
     [SerializeField] static public int currentPlanetIndex = 0;
+    public GameObject[] planetObject = new GameObject[8];
 
-     [SerializeField] private GameObject scanObject;
+    [SerializeField] private GameObject scanObject;
      static public GameObject currentSelectedPlanet;
 
+    private void Awake()
+    {
+        //saveGame += SaveTheGame;
+        saveSystem = this.GetComponent<SaveSystem>();
+    }
 
     private void Update()
     {
-        mineral1Text.SetText("Iron amount: " + mineral1Amount);
-        mineral2Text.SetText("Copper amount: " + mineral2Amount); //Set the texts value so that they update constantly.
-        mineral3Text.SetText("Teralium amount: " + mineral3Amount);
+        mineral1Text.SetText("Relum amount: " + mineral1Amount);
+        mineral2Text.SetText("Kupru amount: " + mineral2Amount); //Set the texts value so that they update constantly.
+        mineral3Text.SetText("Trevleock amount: " + mineral3Amount);
 
         //gameTimer += Time.deltaTime;
         StartHitScanningForPlanet(); //Can be put down as invokeRepeating if causing issues
         ChangeMaterials();
-        
+
+        gameTimer += Time.deltaTime;
+        //saveTimer += Time.deltaTime;
+        if (gameTimer > gameTimerDelay)
+        {
+            gameTimer = 0f;
+            gatherResources.Invoke(); //Invoking Actions
+
+        }
+
+        SaveTheGame();
+        LoadTheGame();
+
+        //if(saveTimer > saveTimerDelay)
+        //{
+        //    saveTimer = 0f;
+        //    saveGame.Invoke();
+        //}
     }
 
     #region Button things here
@@ -104,6 +139,24 @@ public class GameManager : MonoBehaviour
         if (Physics.Raycast(scanObject.transform.position, Vector3.forward, out RaycastHit hitPlanet, 200f)) //shoots a ray that gets the component we need.
         {
             currentSelectedPlanet = hitPlanet.collider.gameObject;  //Potential performance loss here.
+        }
+    }
+
+    public void SaveTheGame()
+    {
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            saveSystem.SaveData("SaveData.oj");
+            Debug.Log("Saved the game");
+        }
+    }
+
+    public void LoadTheGame()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            saveSystem.LoadData("SaveData.oj");
+            Debug.Log("Loaded the game");
         }
     }
 
