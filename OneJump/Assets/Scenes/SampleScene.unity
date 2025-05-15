@@ -3800,11 +3800,11 @@ MonoBehaviour:
   isPlanetUnlocked: 0
   realPlanetSpinSpeed: 45.6
   planetSpinSpeed: 28
-  planetResearchValue: 0
+  planetResearchValue: 14000
   mineral1MadePerSecond: 0
   mineral2MadePerSecond: 0
   mineral3MadePerSecond: 0
-  planetUpgradePrice: 000000000000000000000000
+  planetUpgradePrice: 6e000000aa000000f0000000
   mineral1UpgradeLvl: 1
   mineral2UpgradeLvl: 1
   mineral3UpgradeLvl: 1
@@ -4461,11 +4461,11 @@ MonoBehaviour:
   isPlanetUnlocked: 0
   realPlanetSpinSpeed: 0.086
   planetSpinSpeed: 13
-  planetResearchValue: 0
+  planetResearchValue: 7000
   mineral1MadePerSecond: 0
   mineral2MadePerSecond: 0
   mineral3MadePerSecond: 0
-  planetUpgradePrice: 000000000000000000000000
+  planetUpgradePrice: 5a00000096000000d2000000
   mineral1UpgradeLvl: 1
   mineral2UpgradeLvl: 1
   mineral3UpgradeLvl: 1
@@ -4703,11 +4703,11 @@ MonoBehaviour:
   isPlanetUnlocked: 0
   realPlanetSpinSpeed: 14.79
   planetSpinSpeed: 18
-  planetResearchValue: 0
+  planetResearchValue: 40000
   mineral1MadePerSecond: 0
   mineral2MadePerSecond: 0
   mineral3MadePerSecond: 0
-  planetUpgradePrice: 000000000000000000000000
+  planetUpgradePrice: aa000000d200000022010000
   mineral1UpgradeLvl: 1
   mineral2UpgradeLvl: 1
   mineral3UpgradeLvl: 1
@@ -4772,6 +4772,7 @@ GameObject:
   - component: {fileID: 8165431887682797852}
   - component: {fileID: 8504722631640033012}
   - component: {fileID: 8504722631640033013}
+  - component: {fileID: 8504722631640033014}
   m_Layer: 0
   m_Name: GameManagerObj
   m_TagString: Untagged
@@ -4864,11 +4865,11 @@ MonoBehaviour:
   isPlanetUnlocked: 0
   realPlanetSpinSpeed: 9.7
   planetSpinSpeed: 15
-  planetResearchValue: 0
+  planetResearchValue: 90000
   mineral1MadePerSecond: 0
   mineral2MadePerSecond: 0
   mineral3MadePerSecond: 0
-  planetUpgradePrice: 000000000000000000000000
+  planetUpgradePrice: c8000000f000000040010000
   mineral1UpgradeLvl: 1
   mineral2UpgradeLvl: 1
   mineral3UpgradeLvl: 1
@@ -5316,11 +5317,11 @@ MonoBehaviour:
   isPlanetUnlocked: 0
   realPlanetSpinSpeed: 36.84
   planetSpinSpeed: 22
-  planetResearchValue: 0
+  planetResearchValue: 22000
   mineral1MadePerSecond: 0
   mineral2MadePerSecond: 0
   mineral3MadePerSecond: 0
-  planetUpgradePrice: 000000000000000000000000
+  planetUpgradePrice: 8c000000be0000000e010000
   mineral1UpgradeLvl: 1
   mineral2UpgradeLvl: 1
   mineral3UpgradeLvl: 1
@@ -5423,11 +5424,11 @@ MonoBehaviour:
   isPlanetUnlocked: 0
   realPlanetSpinSpeed: 0.00652
   planetSpinSpeed: 9
-  planetResearchValue: 15
+  planetResearchValue: 3000
   mineral1MadePerSecond: 0
   mineral2MadePerSecond: 0
   mineral3MadePerSecond: 0
-  planetUpgradePrice: 000000000000000000000000
+  planetUpgradePrice: 3200000064000000c8000000
   mineral1UpgradeLvl: 1
   mineral2UpgradeLvl: 1
   mineral3UpgradeLvl: 1
@@ -6012,9 +6013,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49ed85aa4f854a14eb30a29318a949b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugMode: 0
   mineral1Amount: 0
   mineral2Amount: 0
   mineral3Amount: 0
+  min1Click: 0
+  min2Click: 0
+  min3Click: 0
   mineral1Text: {fileID: 808385923}
   mineral2Text: {fileID: 1030864333}
   mineral3Text: {fileID: 515850506}
@@ -6038,6 +6043,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 92ee8e50508a8e64f92ed10cfafd4ff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+--- !u!114 &8504722631640033014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4637410512493016770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf64f47d28ab1b94788adb729ec0100a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
@@ -6253,11 +6271,11 @@ MonoBehaviour:
   isPlanetUnlocked: 0
   realPlanetSpinSpeed: 0.157
   planetSpinSpeed: 18
-  planetResearchValue: 15
+  planetResearchValue: 5000
   mineral1MadePerSecond: 0
   mineral2MadePerSecond: 0
   mineral3MadePerSecond: 0
-  planetUpgradePrice: 000000000000000000000000
+  planetUpgradePrice: 4600000078000000b4000000
   mineral1UpgradeLvl: 1
   mineral2UpgradeLvl: 1
   mineral3UpgradeLvl: 1
