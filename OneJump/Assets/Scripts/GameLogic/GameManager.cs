@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
     {
         //saveGame += SaveTheGame;
         saveSystem = this.GetComponent<SaveSystem>();
+
+        saveSystem.LoadData("SaveData.oj");
     }
 
     private void Update()
