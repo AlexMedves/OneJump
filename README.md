@@ -1,9 +1,9 @@
 #  Hello! And welcome to my project!  
 <H6>(Which at the minute is called OneJump, we'll see about the future)</H6>
 
+As of version 0.06 the controls for OneJump are : Left click to interract with the buttons in scene, and then ',' and '.' to switch which resource you want to click to mine.
 
-Currently the game is not realistically in Version 0.00 per se, as I have worked on it for a little bit before adding it to a github repo.
-But for the sake of everything on here looking neat, the version numbers will start from 0.00, although you and I both know that is not true :/
+
 (Also to help out, features I added will be put in chronological order of me adding them, this doesn't really help you, as much as it helps me realize where my spaghetti was ruined.)
 
 To keep things interesting, I will also add the playlists or music I listened to while creating a new version for OneJump, just because I thought it would be fun, and who knows, maybe you find something you like.
@@ -17,6 +17,7 @@ That list will therefore reside here:
 !~Version 0.03: https://www.youtube.com/watch?v=iTC49Hi4hb8 </br>
 !~Version 0.04: https://www.youtube.com/watch?v=tXB7odE1HuA </br>
 !~Version 0.05: https://www.youtube.com/watch?v=J0shA9J-4Nc </br>
+!~Version 0.06: https://www.youtube.com/watch?v=lS0ux_9gH8o </br>
   
 [ |===================| ]
 </H4>
@@ -111,3 +112,23 @@ I ran into a little issue when making the Save and Load system, following a tuto
 and the method that was showcased within that tutorial was not amazing, too resource intensive and overall doing things in a complicated manner. So then I started re-working said system,
 instead choosing to go with saving files using JSON, everyone seemed to praise it, with plenty libraries/options to serialize the data. I have not yet serialized said data, but I plan on
 using Newtonsoft in order to do that.
+
+<H2>Version 0.06</H2>
+<H3>New Features: </H3>
++ Changed lighting system to URP. </br>
++ Added new menu scene </br>
++ Added star systems to scenes. </br>
++ Game now loads save file if found when you press play. </br>
++ Added Bloom and other visual effects. </br>
++ Once again fixed save system. </br>
+
+<H3>Description</H3>
+Not really any issues with this new update. Everything went well.. Maybe too well... There are still a few things I need to add for the final version to the game, but it is all possible and I see this being
+a project that I am going to be really proud of. As it stands as of now, my check list is: 
+ Create planet models + decoration.
+ Create mining rig models.
+ Make the models "build up" in game.
+ Create the UI elements.
+ ^This has quite a few sub-tasks, as there are different UI elements to be created.
+ Apply UI and anchor.
+ Add controller imput.
