@@ -118,18 +118,17 @@ public class Planet : MonoBehaviour
 
         if (planetName == "")
         {
-            if(cogPlanet == 67389)
+            if (cogPlanet == 67389)
             {
                 planetName = "Cozy Orangutan Planet";
             }
+            else
+            {
+                planetName = prefixList[randomPrefix] + suffixList[randomSuffix];
+                prefixList.RemoveAt(randomPrefix);//Maybe not needed, but it will stop repetition in names. Probably won't work if the name list is not hard coded.
+            }
             //Debug.Log($"Object Name: {this.name}, Number: {randomPrefix}, Prefix: {prefixList[randomPrefix]}; Number: {randomSuffix}, Suffix: {suffixList[randomSuffix]}");
-            planetName = prefixList[randomPrefix] + suffixList[randomSuffix];
-
-            
-
         }
-
-
     }
 
     protected void SpinThePlanet(Rigidbody planetRb) //Takes rigidbody and spins planet
