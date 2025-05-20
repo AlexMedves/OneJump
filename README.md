@@ -2,6 +2,7 @@
 <H6>(Which at the minute is called OneJump, we'll see about the future)</H6>
 
 As of version 0.06 the controls for OneJump are : Left click to interract with the buttons in scene, and then ',' and '.' to switch which resource you want to click to mine.
+W A S D also work within the build release, but S will also save your game whenever pressed. Space to click.
 
 
 (Also to help out, features I added will be put in chronological order of me adding them, this doesn't really help you, as much as it helps me realize where my spaghetti was ruined.)
