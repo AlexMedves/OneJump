@@ -2,17 +2,26 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public bool debugMode = false;
+    public Action saveDebugData;
+
+
     private SaveSystem saveSystem;
 
-     public int mineral1Amount = 0;
-     public int mineral2Amount = 0;
-     public int mineral3Amount = 0;
+    public int mineral1Amount = 0;
+    public int mineral2Amount = 0;
+    public int mineral3Amount = 0;
+
+    public int min1Click = 0;
+    public int min2Click = 0;
+    public int min3Click = 0;
 
     //static private int actualMoney = moneyValue;
 
@@ -43,6 +52,8 @@ public class GameManager : MonoBehaviour
     {
         //saveGame += SaveTheGame;
         saveSystem = this.GetComponent<SaveSystem>();
+
+        saveSystem.LoadData("SaveData.oj");
     }
 
     private void Update()
@@ -61,6 +72,7 @@ public class GameManager : MonoBehaviour
         {
             gameTimer = 0f;
             gatherResources.Invoke(); //Invoking Actions
+            saveDebugData.Invoke();
 
         }
 
@@ -80,13 +92,17 @@ public class GameManager : MonoBehaviour
         switch (selectedMaterial)
         {
             default: mineral1Amount++;
+                min1Click++;
                 break;
 
             case 0: mineral1Amount++;
+                min1Click++;
                 break;
-            case 1: mineral2Amount++; 
+            case 1: mineral2Amount++;
+                min2Click++;
                 break;
             case 2: mineral3Amount++;
+                min3Click++;
                 break;
         }
     }

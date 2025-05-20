@@ -50,7 +50,7 @@ public class UpgradeManager : MonoBehaviour
             upgrade2Level.SetText($"Level : {planetComponent.mineral2UpgradeLvl}");
             upgrade3Level.SetText($"Level : {planetComponent.mineral3UpgradeLvl}");
 
-            planetPrice = planetComponent.planetResearchValue / 3;
+            planetPrice = planetComponent.planetResearchValue;
             planetPriceText.SetText($"Unlock : {planetComponent.planetName}? Price: {planetPrice}");
             
 
