@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class SaveSystem : MonoBehaviour
 {
     public GameManager gameManager;
+    public UpgradeManager upgradeManager;
 
     [System.Serializable]
     private class GameSaveWrapper
@@ -24,9 +25,11 @@ public class SaveSystem : MonoBehaviour
         public int mineral3Amount;
     }
 
+
     private void Awake()
     {
         gameManager = this.GetComponent<GameManager>();
+        upgradeManager = FindObjectOfType<UpgradeManager>();
     }
 
 
@@ -50,10 +53,11 @@ public class SaveSystem : MonoBehaviour
 
         };
 
+
         GameSaveWrapper wrapper = new GameSaveWrapper()
         {
             planets = planetsData,
-            gameMangerData = gameManagerSaveData
+            gameMangerData = gameManagerSaveData,
         };
 
         string json = JsonUtility.ToJson(wrapper, true);

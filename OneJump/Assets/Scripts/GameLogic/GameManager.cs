@@ -9,7 +9,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public bool debugMode = false;
+    public bool debugMode = true;
     public Action saveDebugData;
 
 

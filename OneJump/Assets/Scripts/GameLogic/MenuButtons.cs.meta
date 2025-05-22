@@ -1,4 +1,10 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
+=======
+<<<<<<<< HEAD:OneJump/Assets/Scripts/GameLogic/SaveSystem.cs.meta
+guid: 64f68ac81d2101c40b4d80ac6cbd85dc
+========
+>>>>>>> Stashed changes
 guid: fa145330869000b4ba35660508c244da
 MonoImporter:
   externalObjects: {}
