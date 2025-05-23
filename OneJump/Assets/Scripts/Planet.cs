@@ -135,7 +135,7 @@ public class Planet : MonoBehaviour
     {
         if (!isPlanetUnlocked) return;
 
-        gameManagerScript.AddMoneyPerSecond(mineral1MadePerSecond, mineral2MadePerSecond, mineral3MadePerSecond);
+        gameManagerScript.AddMoneyPerSecond(2 + mineral1UpgradeLvl, 2 + mineral2UpgradeLvl, 2 + mineral3UpgradeLvl);
     }
 
 
@@ -145,9 +145,9 @@ public class Planet : MonoBehaviour
         {
             planetName = this.planetName,
             isPlanetUnlocked = this.isPlanetUnlocked,
-            mineral1MadePerSecond = this.mineral1MadePerSecond,
-            mineral2MadePerSecond = this.mineral2MadePerSecond,
-            mineral3MadePerSecond = this.mineral3MadePerSecond,
+            //mineral1MadePerSecond = this.mineral1MadePerSecond,
+            //mineral2MadePerSecond = this.mineral2MadePerSecond,
+            //mineral3MadePerSecond = this.mineral3MadePerSecond,
 
             mineral1UpgradeLvl = this.mineral1UpgradeLvl,
             mineral2UpgradeLvl = this.mineral2UpgradeLvl,
@@ -166,9 +166,9 @@ public class Planet : MonoBehaviour
     {
         planetName = data.planetName;
         isPlanetUnlocked = data.isPlanetUnlocked;
-        mineral1MadePerSecond = data.mineral1MadePerSecond;
-        mineral2MadePerSecond = data.mineral2MadePerSecond;
-        mineral3MadePerSecond = data.mineral3MadePerSecond;
+        //mineral1MadePerSecond = data.mineral1MadePerSecond;
+        //mineral2MadePerSecond = data.mineral2MadePerSecond;
+        //mineral3MadePerSecond = data.mineral3MadePerSecond;
 
         mineral1UpgradeLvl = data.mineral1UpgradeLvl;
         mineral2UpgradeLvl = data.mineral2UpgradeLvl;
