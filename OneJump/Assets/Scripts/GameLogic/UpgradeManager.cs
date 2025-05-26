@@ -30,7 +30,7 @@ public class UpgradeManager : MonoBehaviour
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        InvokeRepeating(nameof(GetCurrentPlanetStats), 0.2f, 1f);
+        InvokeRepeating(nameof(GetCurrentPlanetStats), 0.2f, 0.3f);
     }
     // Update is called once per frame
     void Update()

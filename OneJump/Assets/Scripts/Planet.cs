@@ -11,9 +11,6 @@ public class PlanetSaveData
     public string planetName;
     public bool isPlanetUnlocked;//
 
-    public int mineral1MadePerSecond;//
-    public int mineral2MadePerSecond;//
-    public int mineral3MadePerSecond;//
 
     public int[] planetUpgradePrice;//
     public int mineral1UpgradeLvl;//
@@ -41,9 +38,6 @@ public class Planet : MonoBehaviour
     [SerializeField] private float realPlanetSpinSpeed = 0f;
     [SerializeField] private float planetSpinSpeed = 0f;
     [SerializeField] public int planetResearchValue = 0;
-    public int mineral1MadePerSecond = 0;//
-    public int mineral2MadePerSecond = 0;//
-    public int mineral3MadePerSecond = 0;//
 
     private Rigidbody planetRigidBody;
 
@@ -135,7 +129,7 @@ public class Planet : MonoBehaviour
     {
         if (!isPlanetUnlocked) return;
 
-        gameManagerScript.AddMoneyPerSecond(2 + mineral1UpgradeLvl, 2 + mineral2UpgradeLvl, 2 + mineral3UpgradeLvl);
+        gameManagerScript.AddMoneyPerSecond(mineral1UpgradeLvl, mineral2UpgradeLvl, mineral3UpgradeLvl);
     }
 
 
@@ -145,9 +139,6 @@ public class Planet : MonoBehaviour
         {
             planetName = this.planetName,
             isPlanetUnlocked = this.isPlanetUnlocked,
-            //mineral1MadePerSecond = this.mineral1MadePerSecond,
-            //mineral2MadePerSecond = this.mineral2MadePerSecond,
-            //mineral3MadePerSecond = this.mineral3MadePerSecond,
 
             mineral1UpgradeLvl = this.mineral1UpgradeLvl,
             mineral2UpgradeLvl = this.mineral2UpgradeLvl,
@@ -166,9 +157,6 @@ public class Planet : MonoBehaviour
     {
         planetName = data.planetName;
         isPlanetUnlocked = data.isPlanetUnlocked;
-        //mineral1MadePerSecond = data.mineral1MadePerSecond;
-        //mineral2MadePerSecond = data.mineral2MadePerSecond;
-        //mineral3MadePerSecond = data.mineral3MadePerSecond;
 
         mineral1UpgradeLvl = data.mineral1UpgradeLvl;
         mineral2UpgradeLvl = data.mineral2UpgradeLvl;
