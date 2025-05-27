@@ -515,11 +515,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: ''','' and ''.'' to control which mineral you click for.
 
-    S to save
-    the game, L to load the game from previous found save.
-
-    Also, W A S D also
-    work, for ease of use. Space is click.'
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4521,7 +4517,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8504722631640033012}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: ExitGame
+        m_MethodName: SaveTheGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4533,7 +4529,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 8504722631640033012}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SaveTheGame
+        m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6884,6 +6880,8 @@ MonoBehaviour:
   mineral1Text: {fileID: 808385923}
   mineral2Text: {fileID: 1030864333}
   mineral3Text: {fileID: 515850506}
+  buttonLeft: {fileID: 0}
+  buttonRight: {fileID: 0}
   planetObject:
   - {fileID: 5311435227181002966}
   - {fileID: 3696329570917734935}
