@@ -28,10 +28,10 @@ public class GameManager : MonoBehaviour
     static public float gameTimer = 0f;
     private readonly float gameTimerDelay = 1f;
 
-    //static private float saveTimer = 0f;
-    //private float saveTimerDelay = 300f;
+    private float saveTimer = 0f;
+    private readonly float saveTimerDelay = 120f;
 
-    //public Action saveGame;
+    public Action saveGame;
     public Action gatherResources;
 
 
@@ -40,6 +40,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text mineral2Text;
     [SerializeField] TMP_Text mineral3Text;
     private int selectedMaterial = 0;
+
+    [SerializeField] private GameObject buttonLeft;
+    [SerializeField] private GameObject buttonRight;
 
     [Header("Planet Logic Stuff")]
     [SerializeField] static public int currentPlanetIndex = 0;
@@ -50,7 +53,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        //saveGame += SaveTheGame;
+        saveGame += SaveTheGame;
         saveSystem = this.GetComponent<SaveSystem>();
 
         saveSystem.LoadData("SaveData.oj");
@@ -58,16 +61,16 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        mineral1Text.SetText("Relum amount: " + mineral1Amount);
-        mineral2Text.SetText("Kupru amount: " + mineral2Amount); //Set the texts value so that they update constantly.
-        mineral3Text.SetText("Trevleock amount: " + mineral3Amount);
+        mineral1Text.SetText($"Relum: {mineral1Amount}");
+        mineral2Text.SetText($"Kupru: {mineral2Amount}"); //Set the texts value so that they update constantly.
+        mineral3Text.SetText($"Trevleock: {mineral3Amount}");
 
         //gameTimer += Time.deltaTime;
         StartHitScanningForPlanet(); //Can be put down as invokeRepeating if causing issues
         ChangeMaterials();
 
         gameTimer += Time.deltaTime;
-        //saveTimer += Time.deltaTime;
+        saveTimer += Time.deltaTime;
         if (gameTimer > gameTimerDelay)
         {
             gameTimer = 0f;
@@ -76,14 +79,14 @@ public class GameManager : MonoBehaviour
 
         }
 
-        SaveTheGame();
+        //SaveTheGame();
         LoadTheGame();
 
-        //if(saveTimer > saveTimerDelay)
-        //{
-        //    saveTimer = 0f;
-        //    saveGame.Invoke();
-        //}
+        if (saveTimer > saveTimerDelay)
+        {
+            saveTimer = 0f;
+            saveGame();
+        }
     }
 
     #region Button things here
@@ -165,11 +168,8 @@ public class GameManager : MonoBehaviour
 
     public void SaveTheGame()
     {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            saveSystem.SaveData("SaveData.oj");
-            Debug.Log("Saved the game");
-        }
+        saveSystem.SaveData("SaveData.oj");
+        Debug.Log("Saved the game");
     }
 
     public void LoadTheGame()
