@@ -2460,6 +2460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  upgradeManager: {fileID: 0}
 --- !u!1 &1969320864
 GameObject:
   m_ObjectHideFlags: 0
