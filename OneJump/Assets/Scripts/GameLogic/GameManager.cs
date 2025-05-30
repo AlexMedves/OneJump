@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
         saveGame += SaveTheGame;
         saveSystem = this.GetComponent<SaveSystem>();
 
-        saveSystem.LoadData("SaveData.oj");
+        saveSystem.LoadData("SaveDataNew.oj"); //Change this back.
     }
 
     private void Update()
@@ -79,8 +79,9 @@ public class GameManager : MonoBehaviour
 
         }
 
+        ChangeTextColor();
         //SaveTheGame();
-        LoadTheGame();
+        //LoadTheGame();
 
         if (saveTimer > saveTimerDelay)
         {
@@ -106,6 +107,28 @@ public class GameManager : MonoBehaviour
                 break;
             case 2: mineral3Amount++;
                 min3Click++;
+                break;
+        }
+    }
+
+    private void ChangeTextColor()
+    {
+        switch (selectedMaterial)
+        {
+            default: mineral1Text.color = Color.white; mineral2Text.color = Color.white; mineral3Text.color = Color.white; break;
+            case 0: mineral1Text.color = Color.green;
+                mineral2Text.color = Color.white;
+                mineral3Text.color = Color.white;
+                break;
+            case 1:
+                mineral2Text.color = Color.green;
+                mineral1Text.color = Color.white;
+                mineral3Text.color = Color.white;
+                break;
+            case 2:
+                mineral3Text.color = Color.green;
+                mineral1Text.color = Color.white;
+                mineral2Text.color = Color.white;
                 break;
         }
     }
@@ -142,6 +165,7 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Comma) && selectedMaterial == 0) //If willing to switch materials, but are on last material, switch to the last material.
         {
             selectedMaterial = 2;
+            
         }
         else if(Input.GetKeyDown(KeyCode.Comma))//Otherwise, just switch down one.
         {
@@ -168,17 +192,14 @@ public class GameManager : MonoBehaviour
 
     public void SaveTheGame()
     {
-        saveSystem.SaveData("SaveData.oj");
+        saveSystem.SaveData("SaveDataNew.oj");  //Change this back
         Debug.Log("Saved the game");
     }
 
     public void LoadTheGame()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            saveSystem.LoadData("SaveData.oj");
-            Debug.Log("Loaded the game");
-        }
+        saveSystem.LoadData("SaveDataNew.oj"); //Change this back.
+        Debug.Log("Loaded the game");
     }
 
 //    protected bool CanAfford(int priceMineral1, int priceMineral2, int priceMineral3)
