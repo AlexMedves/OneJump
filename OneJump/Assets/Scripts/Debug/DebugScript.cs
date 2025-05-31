@@ -47,7 +47,8 @@ public class DebugScript : MonoBehaviour
 
 
             string json = JsonUtility.ToJson(data, true);
-            File.WriteAllText("H:\\Year3\\SaveFiles" + "/" + "DebugData.oj", json);
+            //File.WriteAllText("H:\\Year3\\SaveFiles" + "/" + "DebugData.oj", json);
+            File.WriteAllText(Application.persistentDataPath + "/" + "DebugData.oj", json);
         }
     }
 }

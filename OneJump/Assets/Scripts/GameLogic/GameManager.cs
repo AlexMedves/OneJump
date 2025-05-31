@@ -6,6 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -56,7 +57,13 @@ public class GameManager : MonoBehaviour
         saveGame += SaveTheGame;
         saveSystem = this.GetComponent<SaveSystem>();
 
-        saveSystem.LoadData("SaveDataNew.oj"); //Change this back.
+        Scene thisScene = SceneManager.GetActiveScene();
+        Debug.Log(thisScene.name);
+
+        if (thisScene.name == "MainScene")
+        {
+            saveSystem.LoadData("SaveData.oj"); //Change this back.
+        }
     }
 
     private void Update()
@@ -192,13 +199,13 @@ public class GameManager : MonoBehaviour
 
     public void SaveTheGame()
     {
-        saveSystem.SaveData("SaveDataNew.oj");  //Change this back
+        saveSystem.SaveData("SaveData.oj");  //Change this back
         Debug.Log("Saved the game");
     }
 
     public void LoadTheGame()
     {
-        saveSystem.LoadData("SaveDataNew.oj"); //Change this back.
+        saveSystem.LoadData("SaveData.oj"); //Change this back.
         Debug.Log("Loaded the game");
     }
 

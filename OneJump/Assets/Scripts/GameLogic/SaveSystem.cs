@@ -62,8 +62,8 @@ public class SaveSystem : MonoBehaviour
 
         string json = JsonUtility.ToJson(wrapper, true);
 
-        //File.WriteAllText(Application.persistentDataPath + "/" + filename, json);   Go back to this
-        File.WriteAllText("H:\\Year3\\SaveFiles" + "/" + filename, json);
+        File.WriteAllText(Application.persistentDataPath + "/" + filename, json);
+        //File.WriteAllText("H:\\Year3\\SaveFiles" + "/" + filename, json);
 
         //Debug.Log($"Saved the data at: {Application.persistentDataPath}/{filename}");
     }
@@ -72,7 +72,8 @@ public class SaveSystem : MonoBehaviour
     {
 
 
-        string path = "H:\\Year3\\SaveFiles" + "/" + filename; //This needs to be changed to GetFilePath(Path) or whatever.
+        //string path = "H:\\Year3\\SaveFiles" + "/" + filename; //This needs to be changed to GetFilePath(Path) or whatever.
+        string path = GetFilePath(filename);
         Debug.Log(path);
 
         if (!File.Exists(path))
