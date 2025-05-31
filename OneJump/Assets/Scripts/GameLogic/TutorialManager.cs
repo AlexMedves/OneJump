@@ -11,16 +11,14 @@ public class TutorialManager : MonoBehaviour
     public GameObject[] tutorialPopUps;
     private int currentPopUpID;
 
-    public string currentString = "Hello and welcome to OneJump!";
-    public TMP_Text testbox;
+    private int numberOfTaps;
 
     public float waitTimer = 2f;
 
+    private bool isAllowedToSkip = true;
 
     private void Awake()
     {
-        typewriter = GetComponentInChildren<TypeWriter>();
-        typewriter.textBox = testbox;
     }
 
 
@@ -40,11 +38,33 @@ public class TutorialManager : MonoBehaviour
             }
         }
 
-        if(currentPopUpID == 0)
+        Skipper();
+
+        if (currentPopUpID == 0)
         {
+
         }
     }
 
 
+    public void tapToSkip() //it's in the name
+    {
+        numberOfTaps++;
+    }
 
+    private void Skipper()
+    {
+        if (isAllowedToSkip)
+        {
+            if (numberOfTaps == 1)
+            {
+                TypeWriter.isSkipping = true;
+            }
+            if (numberOfTaps == 2)
+            {
+                currentPopUpID++;
+                numberOfTaps = 0;
+            }
+        }
+    }
 }

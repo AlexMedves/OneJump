@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using TMPro;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class TypeWriter : MonoBehaviour
 
     public TMP_Text textBox {  get; set; }
 
+    public string currentString;
 
     public int currentVisibleCharID;
     public Coroutine typeWriterRoutine;
@@ -16,26 +18,45 @@ public class TypeWriter : MonoBehaviour
     private WaitForSeconds simpleDelay;
     private WaitForSeconds interPunctuationDelay;
 
-    private float charactersPerSecond = 30;
+    private WaitForSeconds skipDelay;
+
+    private float charactersPerSecond = 30f;
     private float interPunctuationDelayFloat = 0.5f;
 
-    private bool isSkipping = false;
-    [Min(1)] private int skipSpeedup = 5;
+    static public bool isSkipping = false;
+
+    [Min(1)] private int skipSpeedup = 10;
     public string chosenText;
 
     private void Awake()
     {
+
         simpleDelay = new WaitForSeconds(1 / charactersPerSecond);
         interPunctuationDelay = new WaitForSeconds(interPunctuationDelayFloat);
-        textBox = GetComponent<TMP_Text>();
+        skipDelay = new WaitForSeconds(1 / (charactersPerSecond * skipSpeedup));
+
+        textBox = this.GetComponent<TMP_Text>();
         tutorialManager = FindObjectOfType<TutorialManager>();
 
+        currentString = textBox.text;
+    }
 
-        SetText(tutorialManager.currentString);
+    private void Update()
+    {
+        if (currentVisibleCharID == currentString.Length)
+        {
+            isSkipping = false;
+            
+        }
     }
 
 
-    public void SetText(string text)
+    private void OnEnable()
+    {
+        SetText(currentString);
+    }
+
+    public void SetText(string text) //This is what handles whatever text you want to display.
     {
         if(typeWriterRoutine != null)
         {
@@ -45,7 +66,7 @@ public class TypeWriter : MonoBehaviour
         textBox.maxVisibleCharacters = 0;
         currentVisibleCharID = 0;
 
-        typeWriterRoutine = StartCoroutine(Typewriter());
+        typeWriterRoutine = StartCoroutine(Typewriter());  
     }
 
 
@@ -53,24 +74,30 @@ public class TypeWriter : MonoBehaviour
     {
         TMP_TextInfo textInfo = textBox.textInfo;
 
-        while (currentVisibleCharID < textInfo.characterCount + 1)
+        while (currentVisibleCharID < textInfo.characterCount +1)
         {
 
-            char character = textInfo.characterInfo[currentVisibleCharID].character;
-            textBox.maxVisibleCharacters++;
+            char character = textInfo.characterInfo[currentVisibleCharID].character; //Tells us what character we are currently on.
+            textBox.maxVisibleCharacters++; //One more character visible.
+            //Debug.Log($"Current visible charID: {currentVisibleCharID} :: characterCount: {textInfo.characterCount}");
 
-            if (character == '?' || character == '.' || character == ',' || character == ':' || character == ';' || character == '!' || character == '-')
+
+            if (!isSkipping && character == '?' || character == '.' || character == ',' || character == ':' || character == ';' || character == '!' || character == '-') //Handles how quick or slow
+                //the text should appear.
             {
                 yield return interPunctuationDelay;
+            }
+            else if (isSkipping)
+            {
+                yield return skipDelay;
+                //textBox.maxVisibleCharacters = tutorialManager.currentString.Length;
             }
             else
             {
                 yield return simpleDelay;
             }
-
-            currentVisibleCharID++;
+            currentVisibleCharID++; //if taken out you will have an infinite loop.
         }
-
     }
 
 }
