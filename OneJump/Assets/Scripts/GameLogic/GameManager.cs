@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 
 
     private SaveSystem saveSystem;
+    static public bool isInTutorial {  get; set; }
 
     public int mineral1Amount = 0;
     public int mineral2Amount = 0;
@@ -37,10 +38,10 @@ public class GameManager : MonoBehaviour
 
 
     [Header("General Object References")]
-    [SerializeField] TMP_Text mineral1Text;
-    [SerializeField] TMP_Text mineral2Text;
-    [SerializeField] TMP_Text mineral3Text;
-    private int selectedMaterial = 0;
+    [SerializeField] public TMP_Text mineral1Text;
+    [SerializeField] public TMP_Text mineral2Text;
+    [SerializeField] public TMP_Text mineral3Text;
+    public int selectedMaterial = 0;
 
     [SerializeField] private GameObject buttonLeft;
     [SerializeField] private GameObject buttonRight;
@@ -120,24 +121,41 @@ public class GameManager : MonoBehaviour
 
     private void ChangeTextColor()
     {
-        switch (selectedMaterial)
+        if (!isInTutorial)
         {
-            default: mineral1Text.color = Color.white; mineral2Text.color = Color.white; mineral3Text.color = Color.white; break;
-            case 0: mineral1Text.color = Color.green;
-                mineral2Text.color = Color.white;
-                mineral3Text.color = Color.white;
-                break;
-            case 1:
-                mineral2Text.color = Color.green;
-                mineral1Text.color = Color.white;
-                mineral3Text.color = Color.white;
-                break;
-            case 2:
-                mineral3Text.color = Color.green;
-                mineral1Text.color = Color.white;
-                mineral2Text.color = Color.white;
-                break;
+            switch (selectedMaterial)
+            {
+                default: mineral1Text.color = Color.white; mineral2Text.color = Color.white; mineral3Text.color = Color.white; break;
+                case 0:
+                    mineral1Text.color = Color.green;
+                    mineral2Text.color = Color.white;
+                    mineral3Text.color = Color.white;
+                    break;
+                case 1:
+                    mineral2Text.color = Color.green;
+                    mineral1Text.color = Color.white;
+                    mineral3Text.color = Color.white;
+                    break;
+                case 2:
+                    mineral3Text.color = Color.green;
+                    mineral1Text.color = Color.white;
+                    mineral2Text.color = Color.white;
+                    break;
+            }
         }
+    }
+
+    public void ChangeMineral1()
+    {
+        selectedMaterial = 0;
+    }
+    public void ChangeMineral2()
+    {
+        selectedMaterial = 1;
+    }
+    public void ChangeMineral3()
+    {
+        selectedMaterial = 2;
     }
 
     public void MoveLeft()
@@ -167,7 +185,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void ChangeMaterials()
+    private void ChangeMaterials() //Computer Functionality.
     {
         if(Input.GetKeyDown(KeyCode.Comma) && selectedMaterial == 0) //If willing to switch materials, but are on last material, switch to the last material.
         {

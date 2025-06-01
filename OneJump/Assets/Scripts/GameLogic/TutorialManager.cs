@@ -6,12 +6,12 @@ using Unity.VisualScripting;
 
 public class TutorialManager : MonoBehaviour
 {
-    TypeWriter typewriter;
+    GameManager gameManager;
 
     public GameObject[] tutorialPopUps;
     private int currentPopUpID;
 
-    private int numberOfTaps;
+    public int numberOfTaps;
 
     public float waitTimer = 2f;
 
@@ -19,6 +19,8 @@ public class TutorialManager : MonoBehaviour
 
     private void Awake()
     {
+        gameManager = FindObjectOfType<GameManager>();
+        GameManager.isInTutorial = true;
     }
 
 
@@ -40,10 +42,25 @@ public class TutorialManager : MonoBehaviour
 
         Skipper();
 
-        if (currentPopUpID == 0)
-        {
 
+        if(currentPopUpID == 2)
+        {
+            gameManager.mineral1Text.gameObject.SetActive(true);
+            gameManager.mineral2Text.gameObject.SetActive(true);
+            gameManager.mineral3Text.gameObject.SetActive(true);
         }
+
+        if(currentPopUpID == 3)
+        {
+            if (!GameManager.isInTutorial)
+            {
+                currentPopUpID++;
+                numberOfTaps = 0;
+            }
+        }
+
+
+
     }
 
 
@@ -60,7 +77,7 @@ public class TutorialManager : MonoBehaviour
             {
                 TypeWriter.isSkipping = true;
             }
-            if (numberOfTaps == 2)
+            if (numberOfTaps >= 2)
             {
                 currentPopUpID++;
                 numberOfTaps = 0;

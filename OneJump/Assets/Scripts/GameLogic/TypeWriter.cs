@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TypeWriter : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class TypeWriter : MonoBehaviour
 
     private WaitForSeconds skipDelay;
 
-    private float charactersPerSecond = 30f;
+    private readonly float charactersPerSecond = 30f;
     private float interPunctuationDelayFloat = 0.5f;
 
     static public bool isSkipping = false;
@@ -39,15 +40,23 @@ public class TypeWriter : MonoBehaviour
         tutorialManager = FindObjectOfType<TutorialManager>();
 
         currentString = textBox.text;
+
+
     }
 
     private void Update()
     {
+        if(SceneManager.GetActiveScene().name == "TutorialScene" && currentVisibleCharID == currentString.Length)
+        {
+            tutorialManager.numberOfTaps = 1;
+        }
+
         if (currentVisibleCharID == currentString.Length)
         {
             isSkipping = false;
-            
+            //Change
         }
+
     }
 
 
@@ -76,7 +85,6 @@ public class TypeWriter : MonoBehaviour
 
         while (currentVisibleCharID < textInfo.characterCount +1)
         {
-
             char character = textInfo.characterInfo[currentVisibleCharID].character; //Tells us what character we are currently on.
             textBox.maxVisibleCharacters++; //One more character visible.
             //Debug.Log($"Current visible charID: {currentVisibleCharID} :: characterCount: {textInfo.characterCount}");
