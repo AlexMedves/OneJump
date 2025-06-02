@@ -12,6 +12,7 @@ public class TypeWriter : MonoBehaviour
     public TMP_Text textBox {  get; set; }
 
     public string currentString;
+    char character;
 
     public int currentVisibleCharID;
     public Coroutine typeWriterRoutine;
@@ -22,9 +23,10 @@ public class TypeWriter : MonoBehaviour
     private WaitForSeconds skipDelay;
 
     private readonly float charactersPerSecond = 30f;
-    private float interPunctuationDelayFloat = 0.5f;
+    private readonly float interPunctuationDelayFloat = 0.5f;
 
     static public bool isSkipping = false;
+    static public bool IsTextComplete { get; set; }
 
     [Min(1)] private int skipSpeedup = 10;
     public string chosenText;
@@ -46,17 +48,17 @@ public class TypeWriter : MonoBehaviour
 
     private void Update()
     {
-        if(SceneManager.GetActiveScene().name == "TutorialScene" && currentVisibleCharID == currentString.Length)
-        {
-            tutorialManager.numberOfTaps = 1;
-        }
+        //Debug.Log($"IsTextComplete is : {IsTextComplete} ; isSkipping is : {isSkipping}");
 
-        if (currentVisibleCharID == currentString.Length)
+        if(currentVisibleCharID == currentString.Length)
         {
+            IsTextComplete = true;
             isSkipping = false;
-            //Change
         }
-
+        else
+        {
+            IsTextComplete = false;
+        }
     }
 
 
@@ -83,15 +85,14 @@ public class TypeWriter : MonoBehaviour
     {
         TMP_TextInfo textInfo = textBox.textInfo;
 
-        while (currentVisibleCharID < textInfo.characterCount +1)
+        while (currentVisibleCharID < textInfo.characterCount + 1) //This gives a handly little error every time text finishes appearing. Estimate of hours wasted trying to fix this : 3
         {
-            char character = textInfo.characterInfo[currentVisibleCharID].character; //Tells us what character we are currently on.
+            character = textInfo.characterInfo[currentVisibleCharID].character; //Tells us what character we are currently on.
             textBox.maxVisibleCharacters++; //One more character visible.
             //Debug.Log($"Current visible charID: {currentVisibleCharID} :: characterCount: {textInfo.characterCount}");
 
-
-            if (!isSkipping && character == '?' || character == '.' || character == ',' || character == ':' || character == ';' || character == '!' || character == '-') //Handles how quick or slow
-                //the text should appear.
+            if (!isSkipping && (character == '?' || character == '.' || character == ',' || character == ':' || character == ';' || character == '!' || character == '-')) //Handles how quick or slow
+                                                                                                                                                                           //the text should appear.
             {
                 yield return interPunctuationDelay;
             }

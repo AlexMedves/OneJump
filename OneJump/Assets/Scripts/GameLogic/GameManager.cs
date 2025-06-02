@@ -15,7 +15,11 @@ public class GameManager : MonoBehaviour
 
 
     private SaveSystem saveSystem;
-    static public bool isInTutorial {  get; set; }
+    static public bool IsInTutorial {  get; set; }
+
+    [SerializeField] public GameObject mineralButton1;
+    [SerializeField] public GameObject mineralButton2;
+    [SerializeField] public GameObject mineralButton3;
 
     public int mineral1Amount = 0;
     public int mineral2Amount = 0;
@@ -58,10 +62,8 @@ public class GameManager : MonoBehaviour
         saveGame += SaveTheGame;
         saveSystem = this.GetComponent<SaveSystem>();
 
-        Scene thisScene = SceneManager.GetActiveScene();
-        Debug.Log(thisScene.name);
 
-        if (thisScene.name == "MainScene")
+        if (SceneManager.GetActiveScene().name == "MainScene")
         {
             saveSystem.LoadData("SaveData.oj"); //Change this back.
         }
@@ -121,7 +123,7 @@ public class GameManager : MonoBehaviour
 
     private void ChangeTextColor()
     {
-        if (!isInTutorial)
+        if (!IsInTutorial)
         {
             switch (selectedMaterial)
             {
