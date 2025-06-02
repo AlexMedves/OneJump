@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -15,8 +16,8 @@ public class TutorialManager : MonoBehaviour
     public int numberOfTaps;
 
 
-    GameObject clickButton;
-    GameObject tutBotten;
+    [SerializeField] private GameObject clickButton;
+    [SerializeField] private GameObject tutBotten;
 
     [SerializeField] GameObject upgradeButton1;
     [SerializeField] GameObject upgradeButton2;
@@ -27,6 +28,7 @@ public class TutorialManager : MonoBehaviour
     {
         gameManager = FindObjectOfType<GameManager>();
         GameManager.IsInTutorial = true;
+        UpgradeManager.isInTutorial = true;
     }
 
 
@@ -46,19 +48,8 @@ public class TutorialManager : MonoBehaviour
                 tutorialPopUps[i].SetActive(false);
             }
         }
-
-        if(clickButton == null)
-        {
-            clickButton = GameObject.Find("AddMoneyButton");
-        }
-        if(tutBotten == null)
-        {
-            tutBotten = GameObject.Find("TutorialButton");
-        }
-        if(planetObject == null)
-        {
-            planetObject = GameManager.currentSelectedPlanet.GetComponent<Planet>();
-        }
+        Debug.Log(GameManager.currentPlanetIndex);
+        planetObject = GameManager.currentSelectedPlanet.GetComponent<Planet>();
 
         Skipper();
 
@@ -89,13 +80,14 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
             case 4:
+                clickButton.SetActive(true);
                 if (gameManager.mineral1Amount > 0 || gameManager.mineral2Amount > 0 || gameManager.mineral3Amount > 0)
                 {
                     currentPopUpID++;
                 }
                 break;
             case 5:
-                if (gameManager.mineral1Amount >= 3 || gameManager.mineral2Amount >= 3 || gameManager.mineral3Amount >= 3)
+                if (gameManager.mineral1Amount >= 10 || gameManager.mineral2Amount >= 10 || gameManager.mineral3Amount >= 10)
                 {
                     currentPopUpID++;
                 }
@@ -103,7 +95,7 @@ public class TutorialManager : MonoBehaviour
             case 6:
                 clickButton.SetActive(false);
                 tutBotten.SetActive(true);
-
+                UpgradeManager.isInTutorial = false;
                 upgradeButton1.SetActive(true);
                 upgradeButton2.SetActive(true);
                 upgradeButton3.SetActive(true);
@@ -182,11 +174,32 @@ public class TutorialManager : MonoBehaviour
                 break;
             case 14:
                 GameManager.automatedLeftRightButtons = false;
+                tutBotten.SetActive(true);
                 break;
             case 15:
                 tutBotten.SetActive(false);
+                if (GameManager.currentPlanetIndex == 1 && planetObject.isPlanetUnlocked)
+                {
+                    GameManager.automatedLeftRightButtons = true;
+                    currentPopUpID++;
 
+                }
                 break;
+            case 16:
+                if (GameManager.currentPlanetIndex == 0)
+                {
+                    currentPopUpID++;
+                }
+                break;
+            case 17:
+                tutBotten.SetActive(true);
+                clickButton.SetActive(false);
+                break;
+            case 18:
+                Debug.Log("Loaded MainScene / Come back to this and delete before build");
+                //SceneManager.LoadScene("MainScene");
+                break;
+
 
         }
 

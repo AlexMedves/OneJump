@@ -25,7 +25,7 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] TMP_Text planetPriceText;
     private int planetPrice;
 
-    
+    static public bool isInTutorial;
 
     Planet planetComponent;
     GameManager gameManager;
@@ -43,7 +43,7 @@ public class UpgradeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        ChangeUpgradeColors();
         if (planetComponent != null)
         {
             upgrade1.SetText($"Price : {planetComponent.planetUpgradePrice[0]} Relum, {planetComponent.upgr1Incr} Kupru."); //Needs this much x material, this much y material, this much z material.
@@ -60,26 +60,56 @@ public class UpgradeManager : MonoBehaviour
 
             planetPrice = planetComponent.planetResearchValue;
             planetPriceText.SetText($"Unlock : {planetComponent.planetName} for {planetPrice} ?");
-            
 
-            if(!planetComponent.isPlanetUnlocked)
+            if (!isInTutorial)
             {
-                unlockPlanetButton.SetActive(true);
-                clickerButton.SetActive(false);
-                upgrade1Button.SetActive(false);
-                upgrade2Button.SetActive(false);
-                upgrade3Button.SetActive(false);
-            }
-            else
-            {
-                unlockPlanetButton.SetActive(false);
-                clickerButton.SetActive(true);
-                upgrade1Button.SetActive(true);
-                upgrade2Button.SetActive(true);
-                upgrade3Button.SetActive(true);
+                if (!planetComponent.isPlanetUnlocked)
+                {
+                    unlockPlanetButton.SetActive(true);
+                    clickerButton.SetActive(false);
+                    upgrade1Button.SetActive(false);
+                    upgrade2Button.SetActive(false);
+                    upgrade3Button.SetActive(false);
+                }
+                else
+                {
+                    unlockPlanetButton.SetActive(false);
+                    clickerButton.SetActive(true);
+                    upgrade1Button.SetActive(true);
+                    upgrade2Button.SetActive(true);
+                    upgrade3Button.SetActive(true);
+                }
             }
         }
 
+    }
+
+    private void ChangeUpgradeColors()
+    {
+        if(gameManager.mineral1Amount >= planetComponent.planetUpgradePrice[0] && gameManager.mineral2Amount >= planetComponent.upgr1Incr)
+        {
+            upgrade1Button.GetComponent<Image>().color = new Color(0.3243f, 1, 0.8546f);
+        }
+        else
+        {
+            upgrade1Button.GetComponent<Image>().color = new Color(1, 0, 0);
+        }
+        if(gameManager.mineral2Amount >= planetComponent.planetUpgradePrice[1] && gameManager.mineral1Amount >= planetComponent.upgr2Incr)
+        {
+            upgrade2Button.GetComponent<Image>().color = new Color(0.3243f, 1, 0.8546f);
+        }
+        else
+        {
+            upgrade2Button.GetComponent<Image>().color = new Color(1, 0, 0);
+        }
+        if(gameManager.mineral3Amount >= planetComponent.planetUpgradePrice[2] && gameManager.mineral1Amount >= planetComponent.upgr3Incr && gameManager.mineral2Amount >= planetComponent.upgr3Incr2)
+        {
+            upgrade3Button.GetComponent<Image>().color = new Color(0.3243f, 1, 0.8546f);
+        }
+        else
+        {
+            upgrade3Button.GetComponent<Image>().color = new Color(1, 0, 0);
+        }
     }
 
     public void PressUpgrade1()
