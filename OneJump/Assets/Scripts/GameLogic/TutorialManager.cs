@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 public class TutorialManager : MonoBehaviour
 {
     GameManager gameManager;
+    Planet planetObject;
 
     public GameObject[] tutorialPopUps;
    [SerializeField] private int currentPopUpID;
@@ -53,6 +54,10 @@ public class TutorialManager : MonoBehaviour
         if(tutBotten == null)
         {
             tutBotten = GameObject.Find("TutorialButton");
+        }
+        if(planetObject == null)
+        {
+            planetObject = GameManager.currentSelectedPlanet.GetComponent<Planet>();
         }
 
         Skipper();
@@ -102,7 +107,6 @@ public class TutorialManager : MonoBehaviour
                 upgradeButton1.SetActive(true);
                 upgradeButton2.SetActive(true);
                 upgradeButton3.SetActive(true);
-                currentPopUpID++;
                 break;
             case 7:
                 clickButton.SetActive(true);
@@ -115,18 +119,78 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
             case 8:
+                clickButton.SetActive(false);
+                if(planetObject.mineral1UpgradeLvl > 1 || planetObject.mineral2UpgradeLvl > 1 || planetObject.mineral3UpgradeLvl > 1)
+                {
+                    currentPopUpID++;
+                    tutBotten.SetActive(true);
+                }
+                break;
+            case 9:
+                break;
+            case 10:
+                tutBotten.SetActive(false);
 
-                Planet planetData;
-                planetData = GameManager.currentSelectedPlanet.GetComponent<Planet>();
-                if(planetData.mineral1UpgradeLvl > 1 || planetData.mineral2UpgradeLvl > 1 || planetData.mineral3UpgradeLvl > 1)
+                if(planetObject.planetSpinSpeed != 1500)
+                {
+                    planetObject.planetSpinSpeed++;
+
+                    if(planetObject.mineral1UpgradeLvl != 50)
+                    {
+                        planetObject.mineral1UpgradeLvl++;
+                        planetObject.mineral1MadePerSecond += 2 + planetObject.mineral1UpgradeLvl;
+                    }
+                    if (planetObject.mineral2UpgradeLvl != 50)
+                    {
+                        planetObject.mineral2UpgradeLvl++;
+                        planetObject.mineral2MadePerSecond += 2 + planetObject.mineral2UpgradeLvl;
+                    }
+                    if (planetObject.mineral3UpgradeLvl != 50)
+                    {
+                        planetObject.mineral3UpgradeLvl++;
+                        planetObject.mineral3MadePerSecond += 2 + planetObject.mineral3UpgradeLvl;
+                    }
+                }
+
+                if(planetObject.planetSpinSpeed == 1500)
                 {
                     currentPopUpID++;
                 }
                 break;
+            case 11:
+                if(planetObject.planetSpinSpeed > 13)
+                {
+                    planetObject.planetSpinSpeed--;
+                }
+                if(planetObject.planetSpinSpeed == 13)
+                {
+                    tutBotten.SetActive(true);
+                    currentPopUpID++;
+                }
+                break;
+            case 12:
+                break;
+            case 13:
+                tutBotten.SetActive(false);
+                GameManager.automatedLeftRightButtons = true;
+
+                if(GameManager.currentPlanetIndex > 0)
+                {
+                    tutBotten.SetActive(true);
+                    currentPopUpID++;
+                }
+                break;
+            case 14:
+                GameManager.automatedLeftRightButtons = false;
+                break;
+            case 15:
+                tutBotten.SetActive(false);
+
+                break;
+
         }
 
     }
-
 
     public void TapToSkip() //it's in the name
     {
@@ -148,4 +212,5 @@ public class TutorialManager : MonoBehaviour
         }
         //else if you click and the text is full, then it goes next pop up.
     }
+
 }

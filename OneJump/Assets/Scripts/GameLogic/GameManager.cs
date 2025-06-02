@@ -49,10 +49,12 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject buttonLeft;
     [SerializeField] private GameObject buttonRight;
+    public static bool automatedLeftRightButtons;
+
 
     [Header("Planet Logic Stuff")]
     [SerializeField] static public int currentPlanetIndex = 0;
-    public GameObject[] planetObject = new GameObject[8];
+    public GameObject[] planetObjects = new GameObject[8];
 
     [SerializeField] private GameObject scanObject;
      static public GameObject currentSelectedPlanet;
@@ -78,6 +80,7 @@ public class GameManager : MonoBehaviour
         //gameTimer += Time.deltaTime;
         StartHitScanningForPlanet(); //Can be put down as invokeRepeating if causing issues
         ChangeMaterials();
+        ShowLeftRightButtons();
 
         gameTimer += Time.deltaTime;
         saveTimer += Time.deltaTime;
@@ -121,6 +124,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void ShowLeftRightButtons()
+    {
+        if (automatedLeftRightButtons)
+        {
+            if (currentPlanetIndex == 0)
+            {
+                buttonRight.SetActive(true);
+                buttonLeft.SetActive(false);
+            }
+            else if (currentPlanetIndex == planetObjects.Length - 1)
+            {
+                buttonLeft.SetActive(true);
+                buttonRight.SetActive(false);
+            }
+        }
+        else
+        {
+            buttonLeft.SetActive(false);
+            buttonRight.SetActive(false);
+        }
+    }
+
     private void ChangeTextColor()
     {
         if (!IsInTutorial)
@@ -129,17 +154,17 @@ public class GameManager : MonoBehaviour
             {
                 default: mineral1Text.color = Color.white; mineral2Text.color = Color.white; mineral3Text.color = Color.white; break;
                 case 0:
-                    mineral1Text.color = Color.green;
+                    mineral1Text.color = new Color(0.3243f, 1, 0.8546f);
                     mineral2Text.color = Color.white;
                     mineral3Text.color = Color.white;
                     break;
                 case 1:
-                    mineral2Text.color = Color.green;
+                    mineral2Text.color = new Color(0.3243f, 1, 0.8546f);
                     mineral1Text.color = Color.white;
                     mineral3Text.color = Color.white;
                     break;
                 case 2:
-                    mineral3Text.color = Color.green;
+                    mineral3Text.color = new Color(0.3243f, 1, 0.8546f);
                     mineral1Text.color = Color.white;
                     mineral2Text.color = Color.white;
                     break;

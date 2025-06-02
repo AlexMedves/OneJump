@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class UpgradeManager : MonoBehaviour
 {
+    [SerializeField] private GameObject upgrade1Button;
+    [SerializeField] private GameObject upgrade2Button;
+    [SerializeField] private GameObject upgrade3Button;
+
     [SerializeField] TMP_Text upgrade1;
     [SerializeField] TMP_Text upgrade2;
     [SerializeField] TMP_Text upgrade3;
@@ -55,18 +59,24 @@ public class UpgradeManager : MonoBehaviour
             mineral3MadePerSecond.SetText($"Trevleock/s: {planetComponent.mineral3MadePerSecond}");
 
             planetPrice = planetComponent.planetResearchValue;
-            planetPriceText.SetText($"Unlock : {planetComponent.planetName}? Price: {planetPrice} of each resource.");
+            planetPriceText.SetText($"Unlock : {planetComponent.planetName} for {planetPrice} ?");
             
 
             if(!planetComponent.isPlanetUnlocked)
             {
                 unlockPlanetButton.SetActive(true);
                 clickerButton.SetActive(false);
+                upgrade1Button.SetActive(false);
+                upgrade2Button.SetActive(false);
+                upgrade3Button.SetActive(false);
             }
             else
             {
                 unlockPlanetButton.SetActive(false);
                 clickerButton.SetActive(true);
+                upgrade1Button.SetActive(true);
+                upgrade2Button.SetActive(true);
+                upgrade3Button.SetActive(true);
             }
         }
 
