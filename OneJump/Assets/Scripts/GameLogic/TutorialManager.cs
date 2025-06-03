@@ -48,7 +48,6 @@ public class TutorialManager : MonoBehaviour
                 tutorialPopUps[i].SetActive(false);
             }
         }
-        Debug.Log(GameManager.currentPlanetIndex);
         planetObject = GameManager.currentSelectedPlanet.GetComponent<Planet>();
 
         Skipper();
@@ -63,6 +62,10 @@ public class TutorialManager : MonoBehaviour
                 gameManager.mineral1Text.gameObject.SetActive(true);
                 gameManager.mineral2Text.gameObject.SetActive(true);
                 gameManager.mineral3Text.gameObject.SetActive(true);
+
+                gameManager.relumText.gameObject.SetActive(true);
+                gameManager.kupruText.gameObject.SetActive(true);
+                gameManager.trevleockText.gameObject.SetActive(true);
                 break;
             case 3:
                 clickButton.SetActive(false);
@@ -122,6 +125,16 @@ public class TutorialManager : MonoBehaviour
                 break;
             case 10:
                 tutBotten.SetActive(false);
+                upgradeButton1.SetActive(false);
+                upgradeButton2.SetActive(false);
+                upgradeButton3.SetActive(false);
+
+                gameManager.mineral1Text.gameObject.SetActive(false);
+                gameManager.relumText.gameObject.SetActive(false);
+                gameManager.mineral2Text.gameObject.SetActive(false);
+                gameManager.kupruText.gameObject.SetActive(false);
+                gameManager.mineral3Text.gameObject.SetActive(false);
+                gameManager.trevleockText.gameObject.SetActive(false);
 
                 if(planetObject.planetSpinSpeed != 1500)
                 {
@@ -157,6 +170,16 @@ public class TutorialManager : MonoBehaviour
                 if(planetObject.planetSpinSpeed == 13)
                 {
                     tutBotten.SetActive(true);
+                    upgradeButton1.SetActive(true);
+                    upgradeButton2.SetActive(true);
+                    upgradeButton3.SetActive(true);
+
+                    gameManager.mineral1Text.gameObject.SetActive(true);
+                    gameManager.relumText.gameObject.SetActive(true);
+                    gameManager.mineral2Text.gameObject.SetActive(true);
+                    gameManager.kupruText.gameObject.SetActive(true);
+                    gameManager.mineral3Text.gameObject.SetActive(true);
+                    gameManager.trevleockText.gameObject.SetActive(true);
                     currentPopUpID++;
                 }
                 break;
@@ -196,6 +219,10 @@ public class TutorialManager : MonoBehaviour
                 clickButton.SetActive(false);
                 break;
             case 18:
+                tutBotten.SetActive(false);
+                clickButton.SetActive(false);
+                GameManager.automatedLeftRightButtons = true;
+                GameManager.IsInTutorial = false;
                 Debug.Log("Loaded MainScene / Come back to this and delete before build");
                 //SceneManager.LoadScene("MainScene");
                 break;

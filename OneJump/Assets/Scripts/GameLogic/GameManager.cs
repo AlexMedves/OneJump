@@ -47,6 +47,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] public TMP_Text mineral3Text;
     public int selectedMaterial = 0;
 
+    [SerializeField] public TMP_Text relumText;
+    [SerializeField] public TMP_Text kupruText;
+    [SerializeField] public TMP_Text trevleockText;
+
     [SerializeField] private GameObject buttonLeft;
     [SerializeField] private GameObject buttonRight;
     public static bool automatedLeftRightButtons;
@@ -67,15 +71,17 @@ public class GameManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "MainScene")
         {
+            IsInTutorial = false;
+            automatedLeftRightButtons = true;
             saveSystem.LoadData("SaveData.oj"); //Change this back.
         }
     }
 
     private void Update()
     {
-        mineral1Text.SetText($"Relum: {mineral1Amount}");
-        mineral2Text.SetText($"Kupru: {mineral2Amount}"); //Set the texts value so that they update constantly.
-        mineral3Text.SetText($"Trevleock: {mineral3Amount}");
+        mineral1Text.SetText($"{mineral1Amount}");
+        mineral2Text.SetText($"{mineral2Amount}"); //Set the texts value so that they update constantly.
+        mineral3Text.SetText($"{mineral3Amount}");
 
         //gameTimer += Time.deltaTime;
         StartHitScanningForPlanet(); //Can be put down as invokeRepeating if causing issues
@@ -133,10 +139,15 @@ public class GameManager : MonoBehaviour
                 buttonRight.SetActive(true);
                 buttonLeft.SetActive(false);
             }
-            else if (currentPlanetIndex == planetObjects.Length - 1)
+            if (currentPlanetIndex == planetObjects.Length - 1)
             {
                 buttonLeft.SetActive(true);
                 buttonRight.SetActive(false);
+            }
+            else if (currentPlanetIndex > 0 && currentPlanetIndex < planetObjects.Length -1)
+            {
+                buttonLeft.SetActive(true);
+                buttonRight.SetActive(true);
             }
         }
         else
@@ -157,16 +168,28 @@ public class GameManager : MonoBehaviour
                     mineral1Text.color = new Color(0.3243f, 1, 0.8546f);
                     mineral2Text.color = Color.white;
                     mineral3Text.color = Color.white;
+
+                    relumText.color = new Color(0.3243f, 1, 0.8546f);
+                    kupruText.color = Color.white;
+                    trevleockText.color = Color.white;
                     break;
                 case 1:
                     mineral2Text.color = new Color(0.3243f, 1, 0.8546f);
                     mineral1Text.color = Color.white;
                     mineral3Text.color = Color.white;
+
+                    kupruText.color = new Color(0.3243f, 1, 0.8546f);
+                    relumText.color = Color.white;
+                    trevleockText.color = Color.white;
                     break;
                 case 2:
                     mineral3Text.color = new Color(0.3243f, 1, 0.8546f);
                     mineral1Text.color = Color.white;
                     mineral2Text.color = Color.white;
+
+                    trevleockText.color = new Color(0.3243f, 1, 0.8546f);
+                    relumText.color = Color.white;
+                    kupruText.color = Color.white;
                     break;
             }
         }
@@ -196,6 +219,10 @@ public class GameManager : MonoBehaviour
         currentPlanetIndex++;
     }
 
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("MenuScene");
+    }
     public void ExitGame()
     {
         Application.Quit();
