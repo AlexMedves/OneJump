@@ -29,7 +29,7 @@ public class GameData
         #endregion
 
         #region Planet data things
-        for (int i =0; i< gameManager.planetObject.Length - 1; i++)
+        for (int i =0; i< gameManager.planetObjects.Length - 1; i++)
         {
             planetUpgradeLevels = new int[3];
             planetUpgradeLevels[0] = planet[i].mineral1UpgradeLvl;

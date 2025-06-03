@@ -1,9 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
+=======
 <<<<<<<< HEAD:OneJump/Assets/Scripts/GameLogic/SaveSystem.cs.meta
-guid: 92ee8e50508a8e64f92ed10cfafd4ff8
+guid: 64f68ac81d2101c40b4d80ac6cbd85dc
 ========
+>>>>>>> Stashed changes
 guid: fa145330869000b4ba35660508c244da
->>>>>>>> WorkingBranch:OneJump/Assets/Scripts/GameLogic/MenuButtons.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

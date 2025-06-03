@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:OneJump/Assets/Prefabs/Stars/FlatStars.prefab.meta
 guid: fb8c98b5532c4fe4483aa53f4c9bcf6c
+========
+guid: 2ca0268921fbacc43bf213569303096e
+>>>>>>>> WorkingBranch:OneJump/Assets/Prefabs/Stars/BoxStars.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

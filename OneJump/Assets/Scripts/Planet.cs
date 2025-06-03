@@ -15,10 +15,18 @@ public class PlanetSaveData
     public int mineral2MadePerSecond;//
     public int mineral3MadePerSecond;//
 
+
     public int[] planetUpgradePrice;//
     public int mineral1UpgradeLvl;//
     public int mineral2UpgradeLvl;//
     public int mineral3UpgradeLvl;//
+
+
+    //Increment values for the upgrades. After purchasing said upgrade, value goes up.
+    public int upgr1Incr;
+    public int upgr2Incr; //These might need to be changed.
+    public int upgr3Incr;
+    public int upgr3Incr2;
 }
 
 
@@ -32,11 +40,12 @@ public class Planet : MonoBehaviour
     [SerializeField] public bool isPlanetUnlocked = false;//
 
     [SerializeField] private float realPlanetSpinSpeed = 0f;
-    [SerializeField] private float planetSpinSpeed = 0f;
+    [SerializeField] public float planetSpinSpeed = 0f;
     [SerializeField] public int planetResearchValue = 0;
-    public int mineral1MadePerSecond = 0;//
-    public int mineral2MadePerSecond = 0;//
-    public int mineral3MadePerSecond = 0;//
+
+    public int mineral1MadePerSecond;//
+    public int mineral2MadePerSecond;//
+    public int mineral3MadePerSecond;//
 
     private Rigidbody planetRigidBody;
 
@@ -44,10 +53,16 @@ public class Planet : MonoBehaviour
 
     [Header("Planet Upgrades Values")]
     public int[] planetUpgradePrice = new int[3];//
-    public int mineral1UpgradeLvl = 1;//
-    public int mineral2UpgradeLvl = 1;//
-    public int mineral3UpgradeLvl = 1;//
-    
+    public int mineral1UpgradeLvl;//
+    public int mineral2UpgradeLvl;//
+    public int mineral3UpgradeLvl;//
+
+    //Increment values for the upgrades. After purchasing said upgrade, value goes up.
+    public int upgr1Incr;
+    public int upgr2Incr; //These might need to be changed.
+    public int upgr3Incr;
+    public int upgr3Incr2;
+
 
     private void Awake()
     {
@@ -57,6 +72,7 @@ public class Planet : MonoBehaviour
         gameManagerScript.gatherResources += GatherResources; //Subscribing to function
 
         PickTheName();
+
     }
 
     private void Update()
@@ -66,41 +82,6 @@ public class Planet : MonoBehaviour
 
     }
 
-    #region Planet Basic Values
-    //I don't know if this section is even worth existing yet, but we figure it out.
-    protected float PlanetSpeed
-    {
-        get { return planetSpinSpeed; }
-        set { planetSpinSpeed = value; }
-    }
-    protected float RealPlanetSpeed
-    {
-        get { return realPlanetSpinSpeed; }
-        set { realPlanetSpinSpeed = value; }
-    }
-    protected bool RealRotationStatus
-    {
-        get { return isRealRotationActive; }
-        set { isRealRotationActive = value; }
-    }
-    protected int PlanetValue
-    {
-        get { return planetResearchValue; }
-        set { planetResearchValue = value; }
-    }
-    protected float SetPlanetUpgradeValue(int planetUpgradeIndex, int planetUpgradeValue)
-    {
-        planetUpgradePrice[planetUpgradeIndex] = planetUpgradeValue;
-        return planetUpgradePrice[planetUpgradeIndex];
-    }
-    //Return what the upgrade value of that index is.
-    protected float GetPlanetUpgradeValue(int planetUpgradeIndex)
-    {
-        return planetUpgradePrice[planetUpgradeIndex];
-    }
-
-
-    #endregion
 
     protected void PickTheName()
     {
@@ -133,22 +114,22 @@ public class Planet : MonoBehaviour
 
     protected void SpinThePlanet(Rigidbody planetRb) //Takes rigidbody and spins planet
     {
-        if (Input.GetKeyDown(KeyCode.V) && RealRotationStatus == false)
+        if (Input.GetKeyDown(KeyCode.V) && isRealRotationActive == false)
         {
-            RealRotationStatus = true;
+            isRealRotationActive = true;
         }
-        else if (Input.GetKeyDown(KeyCode.V) && RealRotationStatus == true)
+        else if (Input.GetKeyDown(KeyCode.V) && isRealRotationActive == true)
         {
-            RealRotationStatus = false;
+            isRealRotationActive = false;
         }
 
-        if (RealRotationStatus)
+        if (isRealRotationActive)
         {
-            planetRb.transform.Rotate(0, RealPlanetSpeed * Time.deltaTime, 0);
+            planetRb.transform.Rotate(0, realPlanetSpinSpeed * Time.deltaTime, 0);
         }
         else
         {
-            planetRb.transform.Rotate(0, PlanetSpeed * Time.deltaTime, 0);
+            planetRb.transform.Rotate(0, planetSpinSpeed * Time.deltaTime, 0);
         }
     }
 
@@ -166,6 +147,7 @@ public class Planet : MonoBehaviour
         {
             planetName = this.planetName,
             isPlanetUnlocked = this.isPlanetUnlocked,
+
             mineral1MadePerSecond = this.mineral1MadePerSecond,
             mineral2MadePerSecond = this.mineral2MadePerSecond,
             mineral3MadePerSecond = this.mineral3MadePerSecond,
@@ -174,7 +156,13 @@ public class Planet : MonoBehaviour
             mineral2UpgradeLvl = this.mineral2UpgradeLvl,
             mineral3UpgradeLvl = this.mineral3UpgradeLvl,
 
+
             planetUpgradePrice = this.planetUpgradePrice,
+
+            upgr1Incr = this.upgr1Incr,
+            upgr2Incr = this.upgr2Incr,
+            upgr3Incr = this.upgr3Incr,
+            upgr3Incr2 = this.upgr3Incr2,
         };
     }
 
@@ -182,14 +170,33 @@ public class Planet : MonoBehaviour
     {
         planetName = data.planetName;
         isPlanetUnlocked = data.isPlanetUnlocked;
+
         mineral1MadePerSecond = data.mineral1MadePerSecond;
         mineral2MadePerSecond = data.mineral2MadePerSecond;
         mineral3MadePerSecond = data.mineral3MadePerSecond;
-        
+
         mineral1UpgradeLvl = data.mineral1UpgradeLvl;
         mineral2UpgradeLvl = data.mineral2UpgradeLvl;
         mineral3UpgradeLvl = data.mineral3UpgradeLvl;
 
+        if (mineral1UpgradeLvl > 50)
+        {
+            mineral1UpgradeLvl = 50;
+        }
+        if (mineral2UpgradeLvl > 50)
+        {
+            mineral2UpgradeLvl = 50;
+        }
+        if (mineral3UpgradeLvl > 50)
+        {
+            mineral3UpgradeLvl = 50;
+        }
+
         planetUpgradePrice = data.planetUpgradePrice;
+
+        upgr1Incr = data.upgr1Incr;
+        upgr2Incr = data.upgr2Incr;
+        upgr3Incr = data.upgr3Incr;
+        upgr3Incr2 = data.upgr3Incr2;
     }
 }

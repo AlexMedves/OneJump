@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:OneJump/Assets/Scenes/MenuScene.unity.meta
 guid: 4bc09486943452e42b866cec8a390b1d
+========
+guid: 9f72a09298fc80b4da4385c2c3267596
+>>>>>>>> WorkingBranch:OneJump/Assets/Scenes/MainScene.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

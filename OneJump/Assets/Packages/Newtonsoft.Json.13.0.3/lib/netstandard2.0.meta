@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:OneJump/Assets/Packages/Newtonsoft.Json.13.0.3/lib/netstandard2.0.meta
 guid: f1170a52aaca93b4095f10227fff71ed
+========
+guid: 8b37c72fc04ae8d4683f5f69b9942a07
+>>>>>>>> WorkingBranch:OneJump/Assets/Packages.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

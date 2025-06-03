@@ -6,15 +6,26 @@ using UnityEngine.SceneManagement;
 
 public class MenuButtons : MonoBehaviour
 {
+    public SaveSystem saveSystem;
+    string path;
 
     private void Awake()
     {
-
+        saveSystem = this.GetComponent<SaveSystem>();
+        path = saveSystem.GetFilePath("SaveData.oj");
     }
 
     public void PressPlay()
     {
-        SceneManager.LoadScene("MainScene");
+        if (!File.Exists(path))
+        {
+            SceneManager.LoadScene("TutorialScene");
+        }
+        else
+        {
+            SceneManager.LoadScene("MainScene");
+
+        }
     }
 
 

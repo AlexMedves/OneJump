@@ -28,15 +28,15 @@ public class CameraBehavior : MonoBehaviour
     private void CameraPositionLogic()
     {
         //Stop the planetIndex values between 0 and 8.
-        GameManager.currentPlanetIndex = Mathf.Clamp(GameManager.currentPlanetIndex, 0, gameManagerScript.planetObject.Length - 1);
+        GameManager.currentPlanetIndex = Mathf.Clamp(GameManager.currentPlanetIndex, 0, gameManagerScript.planetObjects.Length - 1);
         //Set the array index to the currentPlanetIndex value.
-        gameManagerScript.planetObject[GameManager.currentPlanetIndex] = gameManagerScript.planetObject[GameManager.currentPlanetIndex];
+        gameManagerScript.planetObjects[GameManager.currentPlanetIndex] = gameManagerScript.planetObjects[GameManager.currentPlanetIndex];
         
 
         //This is the bit that handles the new camera position, it is updated constantly.
-        if (gameManagerScript.planetObject[GameManager.currentPlanetIndex] != null)
+        if (gameManagerScript.planetObjects[GameManager.currentPlanetIndex] != null)
         {
-            newCameraPosition = gameManagerScript.planetObject[GameManager.currentPlanetIndex].transform.position;
+            newCameraPosition = gameManagerScript.planetObjects[GameManager.currentPlanetIndex].transform.position;
         }
 
         cameraObj.transform.position = Vector3.Lerp(cameraObj.transform.position, newCameraPosition, cameraSpeed * Time.deltaTime);

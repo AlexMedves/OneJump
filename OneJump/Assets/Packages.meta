@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:OneJump/Assets/Packages.meta
 guid: 8b37c72fc04ae8d4683f5f69b9942a07
+========
+guid: 19c5b4e310208b44f86f283a62c451df
+>>>>>>>> WorkingBranch:OneJump/Assets/Materials/Menu Scene.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

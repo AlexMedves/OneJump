@@ -6,14 +6,20 @@ using System.Security.Cryptography.X509Certificates;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public bool debugMode = false;
+    public bool debugMode = true;
     public Action saveDebugData;
 
 
     private SaveSystem saveSystem;
+    static public bool IsInTutorial {  get; set; }
+
+    [SerializeField] public GameObject mineralButton1;
+    [SerializeField] public GameObject mineralButton2;
+    [SerializeField] public GameObject mineralButton3;
 
     public int mineral1Amount = 0;
     public int mineral2Amount = 0;
@@ -28,46 +34,62 @@ public class GameManager : MonoBehaviour
     static public float gameTimer = 0f;
     private readonly float gameTimerDelay = 1f;
 
-    //static private float saveTimer = 0f;
-    //private float saveTimerDelay = 300f;
+    private float saveTimer = 0f;
+    private readonly float saveTimerDelay = 120f;
 
-    //public Action saveGame;
+    public Action saveGame;
     public Action gatherResources;
 
 
     [Header("General Object References")]
-    [SerializeField] TMP_Text mineral1Text;
-    [SerializeField] TMP_Text mineral2Text;
-    [SerializeField] TMP_Text mineral3Text;
-    private int selectedMaterial = 0;
+    [SerializeField] public TMP_Text mineral1Text;
+    [SerializeField] public TMP_Text mineral2Text;
+    [SerializeField] public TMP_Text mineral3Text;
+    public int selectedMaterial = 0;
+
+    [SerializeField] public TMP_Text relumText;
+    [SerializeField] public TMP_Text kupruText;
+    [SerializeField] public TMP_Text trevleockText;
+
+    [SerializeField] private GameObject buttonLeft;
+    [SerializeField] private GameObject buttonRight;
+    public static bool automatedLeftRightButtons;
+
 
     [Header("Planet Logic Stuff")]
     [SerializeField] static public int currentPlanetIndex = 0;
-    public GameObject[] planetObject = new GameObject[8];
+    public GameObject[] planetObjects = new GameObject[8];
 
     [SerializeField] private GameObject scanObject;
      static public GameObject currentSelectedPlanet;
 
     private void Awake()
     {
-        //saveGame += SaveTheGame;
+        saveGame += SaveTheGame;
         saveSystem = this.GetComponent<SaveSystem>();
 
-        saveSystem.LoadData("SaveData.oj");
+
+        if (SceneManager.GetActiveScene().name == "MainScene")
+        {
+            IsInTutorial = false;
+            automatedLeftRightButtons = true;
+            saveSystem.LoadData("SaveData.oj"); //Change this back.
+        }
     }
 
     private void Update()
     {
-        mineral1Text.SetText("Relum amount: " + mineral1Amount);
-        mineral2Text.SetText("Kupru amount: " + mineral2Amount); //Set the texts value so that they update constantly.
-        mineral3Text.SetText("Trevleock amount: " + mineral3Amount);
+        mineral1Text.SetText($"{mineral1Amount}");
+        mineral2Text.SetText($"{mineral2Amount}"); //Set the texts value so that they update constantly.
+        mineral3Text.SetText($"{mineral3Amount}");
 
         //gameTimer += Time.deltaTime;
         StartHitScanningForPlanet(); //Can be put down as invokeRepeating if causing issues
         ChangeMaterials();
+        ShowLeftRightButtons();
 
         gameTimer += Time.deltaTime;
-        //saveTimer += Time.deltaTime;
+        saveTimer += Time.deltaTime;
         if (gameTimer > gameTimerDelay)
         {
             gameTimer = 0f;
@@ -76,14 +98,15 @@ public class GameManager : MonoBehaviour
 
         }
 
-        SaveTheGame();
-        LoadTheGame();
+        ChangeTextColor();
+        //SaveTheGame();
+        //LoadTheGame();
 
-        //if(saveTimer > saveTimerDelay)
-        //{
-        //    saveTimer = 0f;
-        //    saveGame.Invoke();
-        //}
+        if (saveTimer > saveTimerDelay)
+        {
+            saveTimer = 0f;
+            saveGame();
+        }
     }
 
     #region Button things here
@@ -107,6 +130,84 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void ShowLeftRightButtons()
+    {
+        if (automatedLeftRightButtons)
+        {
+            if (currentPlanetIndex == 0)
+            {
+                buttonRight.SetActive(true);
+                buttonLeft.SetActive(false);
+            }
+            if (currentPlanetIndex == planetObjects.Length - 1)
+            {
+                buttonLeft.SetActive(true);
+                buttonRight.SetActive(false);
+            }
+            else if (currentPlanetIndex > 0 && currentPlanetIndex < planetObjects.Length -1)
+            {
+                buttonLeft.SetActive(true);
+                buttonRight.SetActive(true);
+            }
+        }
+        else
+        {
+            buttonLeft.SetActive(false);
+            buttonRight.SetActive(false);
+        }
+    }
+
+    private void ChangeTextColor()
+    {
+        if (!IsInTutorial)
+        {
+            switch (selectedMaterial)
+            {
+                default: mineral1Text.color = Color.white; mineral2Text.color = Color.white; mineral3Text.color = Color.white; break;
+                case 0:
+                    mineral1Text.color = new Color(0.3243f, 1, 0.8546f);
+                    mineral2Text.color = Color.white;
+                    mineral3Text.color = Color.white;
+
+                    relumText.color = new Color(0.3243f, 1, 0.8546f);
+                    kupruText.color = Color.white;
+                    trevleockText.color = Color.white;
+                    break;
+                case 1:
+                    mineral2Text.color = new Color(0.3243f, 1, 0.8546f);
+                    mineral1Text.color = Color.white;
+                    mineral3Text.color = Color.white;
+
+                    kupruText.color = new Color(0.3243f, 1, 0.8546f);
+                    relumText.color = Color.white;
+                    trevleockText.color = Color.white;
+                    break;
+                case 2:
+                    mineral3Text.color = new Color(0.3243f, 1, 0.8546f);
+                    mineral1Text.color = Color.white;
+                    mineral2Text.color = Color.white;
+
+                    trevleockText.color = new Color(0.3243f, 1, 0.8546f);
+                    relumText.color = Color.white;
+                    kupruText.color = Color.white;
+                    break;
+            }
+        }
+    }
+
+    public void ChangeMineral1()
+    {
+        selectedMaterial = 0;
+    }
+    public void ChangeMineral2()
+    {
+        selectedMaterial = 1;
+    }
+    public void ChangeMineral3()
+    {
+        selectedMaterial = 2;
+    }
+
     public void MoveLeft()
     {
         //Slide to the left
@@ -118,6 +219,10 @@ public class GameManager : MonoBehaviour
         currentPlanetIndex++;
     }
 
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("MenuScene");
+    }
     public void ExitGame()
     {
         Application.Quit();
@@ -134,11 +239,12 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void ChangeMaterials()
+    private void ChangeMaterials() //Computer Functionality.
     {
         if(Input.GetKeyDown(KeyCode.Comma) && selectedMaterial == 0) //If willing to switch materials, but are on last material, switch to the last material.
         {
             selectedMaterial = 2;
+            
         }
         else if(Input.GetKeyDown(KeyCode.Comma))//Otherwise, just switch down one.
         {
@@ -165,20 +271,14 @@ public class GameManager : MonoBehaviour
 
     public void SaveTheGame()
     {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            saveSystem.SaveData("SaveData.oj");
-            Debug.Log("Saved the game");
-        }
+        saveSystem.SaveData("SaveData.oj");  //Change this back
+        Debug.Log("Saved the game");
     }
 
     public void LoadTheGame()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            saveSystem.LoadData("SaveData.oj");
-            Debug.Log("Loaded the game");
-        }
+        saveSystem.LoadData("SaveData.oj"); //Change this back.
+        Debug.Log("Loaded the game");
     }
 
 //    protected bool CanAfford(int priceMineral1, int priceMineral2, int priceMineral3)
