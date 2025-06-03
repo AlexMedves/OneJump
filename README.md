@@ -42,6 +42,8 @@ That list will therefore reside here:
 
 !~Version 0.06: https://www.youtube.com/watch?v=lS0ux_9gH8o </br>
 
+!~Version 0.07: A lot of Eminem for some odd reason. </br>
+
 
 
 [ |===================| ]
@@ -270,3 +272,36 @@ a project that I am going to be really proud of. As it stands as of now, my chec
 
 
  Add controller imput.
+
+ <H2>Version 0.07</H2>
+
+<H3>New Features: </H3>
+
++ Added new tutorial scene with pop ups that are interractable. </br>
+
++ Added some of the new planet models into the scene. </br>
+
++ Changed planet values based on play tests. </br>
+
++ Changed a lot of the UI. </br>
+
++ Added atmosphere on some planets, mainly a test. </br>
+
+
+<H3>Description</H3>
+
+I know what I said in the last version's description. But Damn. I recently got a full time job alongside working this project and that messed me up quite badly. I decided taking on the tutorial scene was a lot more important than the other 
+things on said list, so that is now completely done and it took a lot longer than I thought it would. I did have some play testers play my game and I did get some decent feedback, however it was around two or three people that tried it, that made me sad :c . But to be fair clicker games are not amazing to try out on computer so I do get it. Anyways, the check list.
+So the check list is pretty much: 
+
+Finish the planet models (6 as of writing this).
+
+Work on the models that will pop up on the planet.
+
+Make said models appear whenever you upgrade the planet.
+
+Add controller input.
+
+And then certain documents that I won't mention here because you don't care about that.
+
+So yeah. I will see you with updates at some point.
