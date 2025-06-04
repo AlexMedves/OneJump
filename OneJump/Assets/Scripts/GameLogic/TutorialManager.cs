@@ -223,8 +223,8 @@ public class TutorialManager : MonoBehaviour
                 clickButton.SetActive(false);
                 GameManager.automatedLeftRightButtons = true;
                 GameManager.IsInTutorial = false;
-                Debug.Log("Loaded MainScene / Come back to this and delete before build");
-                //SceneManager.LoadScene("MainScene");
+                //Debug.Log("Loaded MainScene / Come back to this and delete before build");
+                SceneManager.LoadScene("MainScene");
                 break;
 
 

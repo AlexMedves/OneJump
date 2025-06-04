@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
     {
         saveGame += SaveTheGame;
         saveSystem = this.GetComponent<SaveSystem>();
+        StartHitScanningForPlanet();
 
 
         if (SceneManager.GetActiveScene().name == "MainScene")
