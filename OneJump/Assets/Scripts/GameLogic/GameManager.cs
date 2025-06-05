@@ -105,8 +105,12 @@ public class GameManager : MonoBehaviour
 
         if (saveTimer > saveTimerDelay)
         {
+            Debug.Log("Tried to Save");
             saveTimer = 0f;
-            saveGame();
+            if (SceneManager.GetActiveScene().name != "TutorialScene")
+            {
+                saveGame();
+            }
         }
     }
 
