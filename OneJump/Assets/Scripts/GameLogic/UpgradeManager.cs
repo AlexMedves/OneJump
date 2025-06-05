@@ -89,7 +89,7 @@ public class UpgradeManager : MonoBehaviour
 
     }
 
-    private void CheckUpgradeStats()
+    private void CheckUpgradeStats() //Rewrite this, it is horrible performance wise. Please.
     {
         //Upgrade1
         if(planetComponent.mineral1UpgradeLvl != 50 && gameManager.mineral1Amount >= planetComponent.planetUpgradePrice[0] && gameManager.mineral2Amount >= planetComponent.upgr1Incr)

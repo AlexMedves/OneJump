@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
     {
         saveGame += SaveTheGame;
         saveSystem = this.GetComponent<SaveSystem>();
+        StartHitScanningForPlanet();
 
 
         if (SceneManager.GetActiveScene().name == "MainScene")
@@ -104,8 +105,12 @@ public class GameManager : MonoBehaviour
 
         if (saveTimer > saveTimerDelay)
         {
+            Debug.Log("Tried to Save");
             saveTimer = 0f;
-            saveGame();
+            if (SceneManager.GetActiveScene().name != "TutorialScene")
+            {
+                saveGame();
+            }
         }
     }
 

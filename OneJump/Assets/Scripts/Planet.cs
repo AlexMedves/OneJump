@@ -57,6 +57,10 @@ public class Planet : MonoBehaviour
     public int mineral2UpgradeLvl;//
     public int mineral3UpgradeLvl;//
 
+    private Transform building1;
+    private Transform building2;
+    private Transform building3;
+
     //Increment values for the upgrades. After purchasing said upgrade, value goes up.
     public int upgr1Incr;
     public int upgr2Incr; //These might need to be changed.
@@ -78,7 +82,7 @@ public class Planet : MonoBehaviour
     private void Update()
     {
         SpinThePlanet(planetRigidBody);
-
+        ApplyBuildings();
 
     }
 
@@ -138,6 +142,30 @@ public class Planet : MonoBehaviour
         if (!isPlanetUnlocked) return;
 
         gameManagerScript.AddMoneyPerSecond(mineral1MadePerSecond, mineral2MadePerSecond, mineral3MadePerSecond);
+    }
+
+    private void ApplyBuildings()
+    {
+        if (isPlanetUnlocked && building1 == null || isPlanetUnlocked && building2 == null || isPlanetUnlocked && building3 == null) // Only applies objects once.
+        {
+            Debug.Log("Objects set");
+            building1 = this.transform.Find("Building1");
+            building2 = this.transform.Find("Building2");
+            building3 = this.transform.Find("Building3");
+        }
+
+        if(isPlanetUnlocked && mineral1UpgradeLvl == 50)
+        {
+            building1.gameObject.SetActive(true);
+        }
+        if (isPlanetUnlocked && mineral2UpgradeLvl == 50)
+        {
+            building2.gameObject.SetActive(true);
+        }
+        if (isPlanetUnlocked && mineral3UpgradeLvl == 50)
+        {
+            building3.gameObject.SetActive(true);
+        }
     }
 
 
