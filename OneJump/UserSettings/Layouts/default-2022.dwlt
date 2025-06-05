@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -269,8 +269,8 @@ MonoBehaviour:
     y: 0
     width: 366
     height: 947
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -413,7 +413,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 56b2feff80ddfeff8eddfeff7adefeff02dcffff2afbffff1c6b0000806c00003c6d0000466d0000aa8e0000ce8e0000fa8e0000108f0000568f0000788f0000f88f00002290000038900000589000006c90000084900000889000008e900000162a0100762a0100602b01001c2c01006c58010070580100525901006c590100ce590100d6590100685a0100765a0100
+      m_ExpandedIDs: 1eefffffd2efffff68f2ffffbef2fffff0f2ffffb8f6ffff24f8ffff2afbffff98720000fe720000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -780,9 +780,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 64.109604, y: 3.782263, z: 43.782295}
+    m_Target: {x: 45.224636, y: -3.1236286, z: 42.157547}
     speed: 2
-    m_Value: {x: 64.109604, y: 3.782263, z: 43.782295}
+    m_Value: {x: 45.224636, y: -3.1236286, z: 42.157547}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -830,11 +830,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.08389757, y: -0.011955354, z: 0.0010141808, w: 0.99643856}
     speed: 2
-    m_Value: {x: 0.08389291, y: -0.0134495115, z: 0.0011399847, w: 0.99638337}
+    m_Value: {x: -0.08389756, y: 0.011955354, z: -0.0010141808, w: -0.9964385}
   m_Size:
-    m_Target: 50.689026
+    m_Target: 45.393917
     speed: 2
-    m_Value: 50.689026
+    m_Value: 43.439156
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -904,7 +904,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -912,16 +912,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: E:\OneJump\OneJump
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 66}
-    m_SelectedIDs: 6e6f0000
-    m_LastClickedID: 28526
-    m_ExpandedIDs: 00000000e46d00006c6f0000706f000000ca9a3b
+    scrollPos: {x: 0, y: 38}
+    m_SelectedIDs: 366e0000
+    m_LastClickedID: 28214
+    m_ExpandedIDs: 00000000366e0000c26f000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -949,7 +949,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000e46d0000
+    m_ExpandedIDs: 00000000366e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
